@@ -1,0 +1,109 @@
+<?php
+defined('MOODLE_INTERNAL') || die();
+
+/**
+ * Web service function definitions for local_novalxpapi.
+ */
+
+$functions = array(
+
+    // ---------------------------------------------------------------------
+    // CORE NovaLXP FUNCTIONS (external.php)
+    // ---------------------------------------------------------------------
+
+    'local_novalxpapi_create_course' => array(
+        'classname'    => '\local_novalxpapi\external',
+        'methodname'   => 'create_course',
+        'description'  => 'Create a new Moodle course.',
+        'type'         => 'write',
+        'capabilities' => 'local/novalxpapi:use',
+        'ajax'         => false,
+    ),
+
+    'local_novalxpapi_enrol_user' => array(
+        'classname'    => '\local_novalxpapi\external',
+        'methodname'   => 'enrol_user',
+        'description'  => 'Enrol a user into a course with a given role.',
+        'type'         => 'write',
+        'capabilities' => 'local/novalxpapi:use',
+        'ajax'         => false,
+    ),
+
+    'local_novalxpapi_add_section' => array(
+        'classname'    => '\local_novalxpapi\external',
+        'methodname'   => 'add_section',
+        'description'  => 'Create a new section at the end of a course.',
+        'type'         => 'write',
+        'capabilities' => 'local/novalxpapi:use',
+        'ajax'         => false,
+    ),
+
+    'local_novalxpapi_add_page' => array(
+        'classname'    => '\local_novalxpapi\external',
+        'methodname'   => 'add_page',
+        'description'  => 'Create a Page activity with HTML content in a specific section.',
+        'type'         => 'write',
+        'capabilities' => 'local/novalxpapi:use',
+        'ajax'         => false,
+    ),
+
+
+    // ---------------------------------------------------------------------
+    // NEW, SAFE WRAPPED FUNCTIONS under classes/external/
+    // ---------------------------------------------------------------------
+
+    // Clean alias for quiz creation (to avoid stale WS-level capability metadata).
+    'local_novalxpapi_quiz_create' => array(
+        'classname'   => '\local_novalxpapi\external\create_quiz',
+        'methodname'  => 'execute',
+        'description' => 'Create a quiz in a course and place it in a section (NovaLXP API, clean alias).',
+        'type'        => 'write',
+        'capabilities'=> 'local/novalxpapi:use',
+        'ajax'        => true,
+    ),
+
+    // Add questions to an existing quiz (questions must already exist).
+    'local_novalxpapi_add_questions_to_quiz' => array(
+        'classname'   => '\local_novalxpapi\external\add_questions_to_quiz',
+        'methodname'  => 'execute',
+        'description' => 'Add existing questions from the question bank to a quiz (NovaLXP API).',
+        'type'        => 'write',
+        'capabilities'=> 'local/novalxpapi:use',
+        'ajax'        => true,
+    ),
+
+    // Add a question to the bank (skeleton – safely logs details until implemented).
+    'local_novalxpapi_add_question_to_bank' => array(
+        'classname'   => '\local_novalxpapi\external\add_question_to_bank',
+        'methodname'  => 'execute',
+        'description' => 'Add a question to the course question bank (skeleton – implement internals).',
+        'type'        => 'write',
+        'capabilities'=> 'local/novalxpapi:use',
+        'ajax'        => true,
+    ),
+);
+
+
+/**
+ * Definition of the NovaLXP Content API service.
+ */
+$services = array(
+    'NovaLXP Content API' => array(
+        'functions' => array(
+            // Core functions
+            'local_novalxpapi_create_course',
+            'local_novalxpapi_enrol_user',
+            'local_novalxpapi_add_section',
+            'local_novalxpapi_add_page',
+
+            // Quiz / question helpers
+            'local_novalxpapi_quiz_create',
+            'local_novalxpapi_add_questions_to_quiz',
+            'local_novalxpapi_add_question_to_bank',
+        ),
+        'restrictedusers' => 0,
+        'enabled'         => 1,
+        'shortname'       => 'novalxp_content_api',
+    ),
+);
+

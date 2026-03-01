@@ -1,0 +1,73 @@
+{{#useteachers}}
+ <div class="teachers-section">
+    <div class="container-fluid">
+	    <div class="section-inner">
+		    {{#teachersectiontitle}}
+		    <h2 class="section-title">
+			   {{{teachersectiontitle}}}
+		    </h2>
+		    {{/teachersectiontitle}}
+		    
+		    {{#teachersectionintro}}
+		    <div class="section-intro text-center">
+			    {{{teachersectionintro}}}
+		    </div><!--//section-intro-->
+		    {{/teachersectionintro}}
+
+		    <div class="teachers-carousel">
+			    {{#teachers}}
+			    {{#hasteacher}}
+			    
+			    <div class="item ">
+				    <div class="item-inner">
+					    <div class="item-bg-pattern">
+						</div>
+					    
+					    <div class="item-header">
+						    <div class="d-flex flex-column flex-md-row">
+							    
+							    {{^teacherimage}}
+							    <img loading="lazy" class="profile me-md-4 rounded mx-auto mx-md-0" src="{{{defaultimage}}}" alt="image"/>
+							    {{/teacherimage}}
+							    {{#teacherimage}}
+								<img loading="lazy" class="profile me-md-4 rounded mx-auto mx-md-0" src="{{{teacherimage}}}" alt="image"/>
+							    {{/teacherimage}}
+							   
+							    <div class="bio-holder align-self-center text-center text-md-start">
+								    {{#teachername}}
+								    <h4 class="title mt-1 mb-0">{{{teachername}}}</h4>
+								    {{/teachername}}
+								    {{#teachermeta}}
+								    <div class="meta">{{{teachermeta}}}</div>
+								    {{/teachermeta}}
+								    
+							    </div><!--//bio-holder-->
+							    
+						    </div><!--//media-container-->
+						    
+					    </div><!--//item-header-->
+					    <div class="item-content text-center text-md-start">
+						    {{#teacherbio}}
+						    <div class="desc mt-2"> 
+							    {{{teacherbio}}}
+						    </div><!--//desc-->
+						    {{/teacherbio}}
+					    </div><!--//item-content-->
+				    </div><!--//item-inner-->
+			    </div><!--//item-->
+			    {{/hasteacher}}
+			    {{/teachers}}
+		    </div><!--//teachers-carousel-->
+		    
+		    {{#teachersbuttontext}}
+		    <div class="text-center mb-5">
+			    {{#teachersbuttonurl}}<a class="btn theme-btn-cta" href="{{{teachersbuttonurl}}}" {{#teachersbuttonurlopennew}}target="_blank"{{/teachersbuttonurlopennew}}>{{/teachersbuttonurl}}
+				    {{{teachersbuttontext}}}
+				{{#teachersbuttonurl}}</a>{{/teachersbuttonurl}}
+		    </div>
+		    {{/teachersbuttontext}}
+		    
+	    </div><!--//section-inner-->
+    </div><!--//container-fluid-->
+ </div><!--//teachers-section-->
+{{/useteachers}}

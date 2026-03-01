@@ -1,0 +1,32 @@
+<?php
+/**
+ * Internal quiz helper functions for NovaLXP.
+ *
+ * Not exposed as web services – only used by classes in classes/external/.
+ */
+
+namespace local_novalxpapi\local;
+
+defined('MOODLE_INTERNAL') || die();
+
+class quiz_service {
+
+    /**
+     * Create a quiz in the given course and place it in the requested section.
+     *
+     * @param \stdClass $course   Course record (course table).
+     * @param int       $section  Section param: 0=last section, else course_sections.id or section number.
+     * @param string    $name     Quiz name.
+     * @param string    $intro    HTML intro.
+     * @param int       $visible  1=visible, 0=hidden.
+     * @return int      New coursemodule id.
+     * @throws \Throwable
+     */
+    public static function create_quiz(\stdClass $course, int $section, string $name,
+        string $intro = '', int $visible = 1): int {
+
+        global $CFG, $DB;
+
+        require_once($CFG->dirroot . '/course/lib.php');
+        require_once($CFG->dirr_
+

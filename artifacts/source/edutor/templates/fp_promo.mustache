@@ -1,0 +1,93 @@
+{{#usepromocarousel}}
+
+<div class="promo-section">
+    <div class="container-fluid">
+	    <div class="section-inner">
+		    {{#promosectiontitle}}
+		    <h2 class="section-title text-center">
+			    {{{promosectiontitle}}}
+		    </h2>
+		    {{/promosectiontitle}}
+		    {{#promosectionintro}}
+		    <div class="section-intro text-center">
+			    {{{promosectionintro}}}
+		    </div><!--//section-intro-->
+		    {{/promosectionintro}}
+		    
+		    <div class="promo-carousel owl-carousel owl-theme">
+	           
+	           {{#promocarousel}}
+	           {{#hasitem}}
+			    <div class="item item-{{{itemcount}}}">
+				    <div class="item-inner row justify-content-between">
+					    
+						<div class="item-content col-12 col-lg-7">
+						    <div class="item-content-inner pt-5">
+							    <h3 class="item-title">{{{carouseltitle}}}</h3>
+							    {{#carouselcontent}}
+							    <div class="item-desc">
+								    {{{carouselcontent}}}
+							    </div><!--//item-desc-->
+							    {{/carouselcontent}}
+							    
+							    {{#carouselbtn}}
+							    <a class="item-cta btn theme-btn-secondary" href="{{{carouselurl}}}" {{#urlopennew}}target="_blank"{{/urlopennew}}>{{{carouselbtn}}}</a>
+							    {{/carouselbtn}}
+						    </div><!--//item-content-inner-->
+					    </div><!--//item-content-->
+					     <div class="item-figure col-12 col-lg-5">
+						    {{#carouselimage}}
+						    <div class="item-figure-holder">
+							{{/carouselimage}}
+							
+							    {{#hasvideo}}
+							    <div class="item-control text-center">
+		                            <a id="play-trigger" class="play-trigger pulse-effect" data-bs-toggle="modal" data-bs-target="#modal-video-{{{itemcount}}}"></a>                    
+		                        </div><!--//item-control-->
+		                        {{/hasvideo}}
+		                        
+		                    {{#carouselimage}}
+						    </div>
+						    {{/carouselimage}}
+						    
+					    </div><!--//item-figure-->
+					    
+				    </div><!--//item-inner-->
+			    </div><!--//item-->
+			    {{/hasitem}}
+			    {{/promocarousel}}   
+		    </div><!--//promo-carousel-->
+	    </div><!--//section-inner-->
+
+    </div><!--//container-->
+</div><!--//promo-section-->
+
+{{#promocarousel}}
+{{#hasitem}}
+{{#hasvideo}}
+<!-- Video Modal -->
+<div class="modal modal-video modal-video-{{{itemcount}}}" id="modal-video-{{{itemcount}}}" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel-{{{itemcount}}}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="video-container ratio ratio-16x9">
+                    {{#useyoutube}}
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{{videoid}}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    {{/useyoutube}}
+                    {{#usevimeo}}
+                    <iframe src="https://player.vimeo.com/video/{{{videoid}}}" width="720" height="405" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay; fullscreen"></iframe>
+                    {{/usevimeo}}
+                </div><!--//video-container-->
+            </div><!--//modal-body-->
+        </div><!--//modal-content-->
+    </div><!--//modal-dialog-->
+</div><!--//modal-->
+{{/hasvideo}}
+{{/hasitem}}
+{{/promocarousel}} 
+
+
+{{/usepromocarousel}}

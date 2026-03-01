@@ -1,0 +1,56 @@
+{{#usesearchsection}}
+
+<div class="search-section">
+	
+	
+	<div class="container-fluid">
+
+	    <div class="section-inner">
+		    
+		    <div class="bg-pattern-wrapper">
+		         <div class="banner-triangle banner-triangle-1"></div>
+		         <div class="banner-triangle banner-triangle-2"></div>
+		         <div class="banner-triangle banner-triangle-3"></div>
+		         <div class="banner-triangle banner-triangle-4"></div>
+		    </div>
+	    
+		    {{#searchsectiontitle}}
+		    <h2 class="section-title">{{{searchsectiontitle}}}</h2>
+		    {{/searchsectiontitle}}
+		    
+		    {{#searchsectionintro}}
+		    <div class="section-intro">
+			    {{{searchsectionintro}}}
+		    </div>
+		    {{/searchsectionintro}}
+		    
+			{{#searchsectionbuttontext}}
+		    <div class="section-cta-holder text-center">
+			    {{#searchsectionbuttonurl}}<a class="btn btn-cta theme-btn-secondary" href="{{{searchsectionbuttonurl}}}" {{#searchsectionbuttonurlopennew}}target="_blank"{{/searchsectionbuttonurlopennew}}>{{/searchsectionbuttonurl}}
+				    {{{searchsectionbuttontext}}}
+				{{#searchsectionbuttonurl}}</a>{{/searchsectionbuttonurl}}
+		    </div>
+		    {{/searchsectionbuttontext}}
+			    
+		    
+		    {{#hassearch}}
+			<div class="search-courses-form">
+			    <div class="form-wrapper">
+			        <form class="search-form" action="{{{ config.wwwroot }}}/course/search.php" method="get">
+			            
+			            <input type="text" placeholder="{{#str}} searchcourses {{/str}}" name="search" class="form-control search-input">
+			            
+			            <button type="submit" class="btn search-btn" value="Search"><i class="fa fa-search"></i></button>
+			        </form><!--//search-form-->   
+			    </div>                      
+			</div><!--//search-courses-section-->
+			{{/hassearch}}
+
+	    </div><!--//section-inner-->
+
+    </div><!--//container-fluid-->
+    
+</div><!--//search-section-->
+
+
+{{/usesearchsection}}

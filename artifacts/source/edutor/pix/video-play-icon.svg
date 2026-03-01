@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="179px" height="179px" viewBox="0 0 179 179" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Play-icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Play-icon" fill-rule="nonzero">
+            <path d="M89.5,179 C40.0705149,179 0,138.929485 0,89.5 C0,40.0705149 40.0705149,0 89.5,0 C138.929485,0 179,40.0705149 179,89.5 C179,138.929485 138.929485,179 89.5,179 Z M89.5,167 C132.302068,167 167,132.302068 167,89.5 C167,46.6979319 132.302068,12 89.5,12 C46.6979319,12 12,46.6979319 12,89.5 C12,132.302068 46.6979319,167 89.5,167 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+            <circle id="Oval" fill="#FFFFFF" cx="90" cy="90" r="71"></circle>
+            <polygon id="Triangle" stroke="#000000" stroke-width="9" fill="#000000" stroke-linecap="round" stroke-linejoin="round" transform="translate(97.500000, 89.500000) rotate(-270.000000) translate(-97.500000, -89.500000) " points="97.5 67 120 112 75 112"></polygon>
+        </g>
+    </g>
+</svg>

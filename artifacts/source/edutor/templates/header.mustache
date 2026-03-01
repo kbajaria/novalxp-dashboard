@@ -1,0 +1,91 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    Page header.
+}}
+
+<header id="header" class="page-header">
+	<div class="top-bar">
+		<div class="container-fluid">
+			<div class="top-bar-inner">
+
+		        <nav class="navbar fixed-top navbar-expand boost-navbar" aria-label="{{#str}}sitemenubar, admin{{/str}}">
+                    <button class="navbar-toggler aabtn d-block d-md-none my-1 me-2" data-toggler="drawers" data-action="toggle" data-target="theme_boost-drawers-primary">
+				        <span class="icon-bar-wrapper">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </span>
+				        <span class="sr-only">{{#str}}sidepanel, core{{/str}}</span>
+				    </button>
+				
+				    <a href="{{{ config.wwwroot }}}" class="navbar-brand d-none d-md-flex align-items-center m-0 me-4 p-0 aabtn">
+				
+		
+				        
+				        {{# output.site_logo }}
+	
+		                <img class="site-logo" src="{{{ output.site_logo }}}" alt="{{sitename}}">
+	
+		                {{/ output.site_logo }}
+				        {{^ output.site_logo }}
+				            {{{ sitename }}}
+				        {{/ output.site_logo }}
+				    </a>
+				    {{#primarymoremenu}}
+				        <div class="primary-navigation">
+				            {{> core/moremenu}}
+				        </div>
+				    {{/primarymoremenu}}
+				
+				    <ul class="navbar-nav d-none d-md-flex my-1 px-1">
+				        <!-- page_heading_menu -->
+				        {{{ output.page_heading_menu }}}
+				    </ul>
+				
+				    <div id="usernavigation" class="navbar-nav ms-auto">
+				        {{# output.search_box }}
+				            {{{ output.search_box }}}
+				            <div class="divider border-left h-75 align-self-center mx-1"></div>
+				        {{/output.search_box}}
+				        {{#langmenu}}
+				            {{> theme_boost/language_menu }}
+				            <div class="divider border-left h-75 align-self-center mx-1"></div>
+				        {{/langmenu}}
+				        {{{ output.navbar_plugin_output }}}
+				        <div class="d-flex align-items-stretch usermenu-container" data-region="usermenu">
+				            {{#usermenu}}
+				                {{> core/user_menu }}
+				            {{/usermenu}}
+				        </div>
+				        {{{ output.edit_switch }}}
+				    </div>
+				</nav><!--//boost-navbar-->
+
+			</div><!--//top-bar-inner-->
+		</div>
+	</div><!--//top-bar-->
+
+</header><!--//header-->
+
+
+
+
+{{!--//moodle_validator (theme class function)--}}
+{{{ output.moodle_validator}}} 
+
+{{> theme_boost/primary-drawer-mobile }}

@@ -1,0 +1,10 @@
+total 40
+drwxr-xr-x.  6 apache apache   126 Feb 27 12:46 .
+drwxr-xr-x. 62 apache apache 16384 Feb 28 13:33 ..
+drwxr-xr-x.  3 apache apache    54 Oct 26 15:45 bedrock
+drwxr-xr-x.  5 root   root     100 Dec  2 18:42 canny
+drwxr-xr-x.  5 apache apache   105 Nov 28 21:53 novalxpapi
+drwxr-xr-x.  6    501 games    141 Feb 27 13:12 novalxpbot
+-rw-r--r--.  1 apache apache 12373 Oct 22 15:17 readme.txt
+-rw-r--r--.  1 apache apache   916 Oct 22 15:17 upgrade.txt
+-rw-r--r--.  1 root   root     325 Dec  2 18:22 version.php

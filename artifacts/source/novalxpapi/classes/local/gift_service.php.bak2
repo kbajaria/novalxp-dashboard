@@ -1,0 +1,85 @@
+<?php
+/**
+ * GIFT import helper for NovaLXP.
+ *
+ * Uses Moodle's core GIFT importer to create questions in the course question bank.
+ */
+
+namespace local_novalxpapi\local;
+
+defined('MOODLE_INTERNAL') || die();
+
+class gift_service {
+
+    /**
+     * Import GIFT text into the course question bank (default category) and return new question IDs.
+     *
+     * @param \stdClass $course     Course record.
+     * @param string    $gifttext   Raw GIFT formatted text.
+     * @param int       $categoryid Optional explicit question category id (0 = course default).
+     * @return array {
+     *   questionsparsed => int,
+     *   questionids     => int[]
+     * }
+     * @throws \moodle_exception|\Throwable
+     */
+    public static function import_gift_to_course($course, $gifttext, $categoryid = 0) {
+        global $CFG;
+
+        $gifttext = trim((string)$gifttext);
+        if ($gifttext === '') {
+            return array(
+                'questionsparsed' => 0,
+                'questionids'     => array(),
+            );
+        }
+
+        require_once($CFG->libdir . '/questionlib.php');
+        require_once($CFG->libdir . '/filelib.php');
+        require_once($CFG->dirroot . '/question/format.php');
+        require_once($CFG->dirroot . '/question/format/gift/format.php');
+
+        // Resolve target category (0 = default course category, auto-created if missing).
+        $category = questionbank_service::resolve_target_category($course, (int)$categoryid);
+
+        // Create a temp directory and file for the GIFT text.
+        $tempdir  = make_temp_directory('novalxpapi_gift');
+        $filename = 'novalxpapi_ws_import_' . time() . '_' . rand(1000, 9999) . '.gift';
+        $tempfile = $tempdir . '/' . $filename;
+
+        if (file_put_contents($tempfile, $gifttext) === false) {
+            throw new \moodle_exception('cannotwritefile', 'error', '', null, 'Failed to write temp GIFT file');
+        }
+
+        debugging('[NovaLXP] gift_service::import_gift_to_course temp file: ' . $tempfile, DEBUG_DEVELOPER);
+        error_log('[NovaLXP] gift_service::import_gift_to_course temp file: ' . $tempfile);
+
+        // Instantiate the GIFT importer.
+        $format = new \qformat_gift();
+
+        // These setters are provided by qformat_default/qformat_gift.
+        // They tell the importer which course/category/file to work with.
+        $format->setCategory($category);
+        $format->setCourse($course);
+        $format->setFilename($tempfile);
+        $format->setRealfilename($filename);
+        $format->setMatchgrades('error');
+        $format->setStoponerror(false);
+        $format->set_display_progress(false); // be quiet in web service context
+
+        // Import lifecycle: preprocess -> process -> postprocess.
+        if (!$format->importpreprocess()) {
+            @unlink($tempfile);
+            throw new \moodle_exception('cannotimport', 'question', '', null, 'importpreprocess() failed');
+        }
+
+        if (!$format->importprocess()) {
+            @unlink($tempfile);
+            throw new \moodle_exception('cannotimport', 'question', '', null, 'importprocess() failed');
+        }
+
+        $format->importpostprocess();
+
+        // Clean up temp file.
+        @unlink($tempfile);
+

@@ -1,0 +1,54 @@
+{{#usecategories}}
+<div class="categories-section">
+	{{#categoriessectiontitle}}
+    <h2 class="section-title">{{{categoriessectiontitle}}}</h2>
+    {{/categoriessectiontitle}}
+
+    <div class="container-fluid">
+	    <div class="section-inner">
+		    <div class="d-flex flex-wrap justify-content-center">
+			    
+			    {{#categories}}
+				{{#hascategory}}
+			    <div class="item item-{{{categorycount}}}">
+				    <div class="item-inner">
+					  {{#categoryimage}}
+					  <div class="icon-holder">
+						  <img loading="lazy" src="{{{categoryimage}}}" alt="image">
+					  </div>
+					  {{/categoryimage}}
+					  
+					  <div class="cat-content">
+						{{#categorytitle}}
+					    <h5 class="title">{{{categorytitle}}}</h5>
+					    {{/categorytitle}}
+					    {{#categorycontent}}
+                        <div class="desc">{{{categorycontent}}}</div>
+                        {{/categorycontent}}
+                        
+                        {{#categoryurl}}
+						<a class="item-link" href="{{{categoryurl}}}"></a>
+						{{/categoryurl}}
+						
+					  </div>
+					  
+					</div>
+			    </div><!--//item-->
+			    {{/hascategory}}	    
+			    {{/categories}}
+		    </div><!--//row-->
+		    
+		    {{#categoriesbuttontext}}
+		    <div class="text-center py-3">
+			    {{#categoriesbuttonurl}}<a class="btn theme-btn-cta theme-btn-secondary" href="{{{categoriesbuttonurl}}}" {{#categoriesbuttonurlopennew}}target="_blank"{{/categoriesbuttonurlopennew}}>{{/categoriesbuttonurl}}
+				    {{{categoriesbuttontext}}}
+				{{#categoriesbuttonurl}}</a>{{/categoriesbuttonurl}}
+		    </div>
+		    {{/categoriesbuttontext}}
+		    
+		    
+		</div><!--//section-inner-->
+    </div><!--//container-fluid-->
+    
+</div><!--//categories-section-->
+{{/usecategories}}

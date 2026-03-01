@@ -1,0 +1,19 @@
+total 168
+drwxrwxrwx. 13 apache   apache   16384 Feb 19 19:15 .
+drwxr-xr-x.  5 apache   apache   16384 Feb 19 19:20 ..
+drwxrwxrwx.  4 apache   apache      35 Oct 29 18:40 classes
+-rw-rw-rw-.  1 apache   apache    6924 Oct 22 14:13 config.php
+-rw-r--r--.  1 ssm-user ssm-user    45 Feb 19 19:15 edutor-2026-02-19.tar.gz
+drwxrwxrwx.  2 apache   apache      79 Oct 29 18:50 fonts
+drwxrwxrwx.  3 apache   apache      16 Oct 29 18:40 lang
+drwxrwxrwx.  2 apache   apache     165 Oct 29 18:50 layout
+-rw-rw-rw-.  1 apache   apache   67525 Sep 20 08:47 lib.php
+drwxrwxrwx.  2 apache   apache   16384 Dec  3 15:40 pix
+drwxrwxrwx.  3 apache   apache      15 Oct 29 18:40 pix_core
+drwxrwxrwx.  4 apache   apache      30 Oct 29 18:40 pix_plugins
+drwxrwxrwx.  3 apache   apache      73 Oct 29 18:51 plugins
+drwxrwxrwx.  4 apache   apache      71 Oct 29 18:51 scss
+drwxrwxrwx.  2 apache   apache   16384 Oct 29 18:51 settings
+-rw-rw-rw-.  1 apache   apache    1626 Apr  7  2024 settings.php
+drwxrwxrwx.  3 apache   apache   16384 Oct 29 18:51 templates
+-rw-rw-rw-.  1 apache   apache    1000 Oct 22 14:37 version.php

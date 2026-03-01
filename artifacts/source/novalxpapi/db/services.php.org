@@ -1,0 +1,36 @@
+<?php
+defined('MOODLE_INTERNAL') || die();
+
+$functions = [
+    'local_novalxpapi_add_section' => [
+        'classname'   => 'local_novalxpapi\\external',
+        'methodname'  => 'add_section',
+        'classpath'   => '',
+        'description' => 'Create or update a section in a course.',
+        'type'        => 'write',
+        'capabilities'=> 'local/novalxpapi:use',
+        'ajax'        => false,
+    ],
+    'local_novalxpapi_add_page' => [
+        'classname'   => 'local_novalxpapi\\external',
+        'methodname'  => 'add_page',
+        'classpath'   => '',
+        'description' => 'Create a Page activity with HTML content in a specific section.',
+        'type'        => 'write',
+        'capabilities'=> 'local/novalxpapi:use',
+        'ajax'        => false,
+    ],
+];
+
+$services = [
+    'NovaLXP Content API' => [
+        'functions' => [
+            'local_novalxpapi_add_section',
+            'local_novalxpapi_add_page',
+        ],
+        'restrictedusers' => 0,
+        'enabled' => 1,
+        'shortname' => 'novalxp_content_api',
+    ],
+];
+

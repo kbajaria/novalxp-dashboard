@@ -1,0 +1,106 @@
+{{#usetestimonials}}
+<div class="testimonial-section">
+    <div class="container-fluid">
+	    
+	    <div class="section-inner">
+	    
+		    <div class="row">
+			    
+			    <div class="col-12 col-lg-4 col-xl-4 pe-lg-5">
+				    {{#testimonialsectiontitle}}
+				    <h2 class="section-title">
+					    {{{testimonialsectiontitle}}}
+				    </h2>
+				    {{/testimonialsectiontitle}}
+				    {{#testimonialsectionintro}}
+				    <div class="section-intro mb-5 mb-lg-0">
+					    {{{testimonialsectionintro}}}
+					</div><!--//section-intro-->
+					{{/testimonialsectionintro}}
+
+				    {{#testimonialsbuttontext}}
+				    <div class="pt-3 pb-5">
+					    {{#testimonialsbuttonurl}}<a class="btn btn-cta theme-btn-secondary" href="{{{testimonialsbuttonurl}}}" {{#testimonialsbuttonurlopennew}}target="_blank"{{/testimonialsbuttonurlopennew}}>{{/testimonialsbuttonurl}}
+						    {{{testimonialsbuttontext}}}
+						{{#testimonialsbuttonurl}}</a>{{/testimonialsbuttonurl}}
+				    </div>
+				    {{/testimonialsbuttontext}}
+
+			    </div><!--//col-12-->
+			    
+			    <div class="col-12 col-lg-8 col-xl-8">
+				    <div class="testimonial-carousel owl-carousel owl-theme">
+					    {{#testimonials}}
+						    {{#hastestimonial}}
+						    <div class="item">
+							    
+							    <div class="quote-box">
+								    <div class="quote-rating">							
+									    
+									    {{#showstarratings}}
+									    <div class="review-5-star">
+										    <i class="fa fa-star active-star" aria-hidden="true"></i>
+										    <i class="fa fa-star active-star" aria-hidden="true"></i>
+										    <i class="fa fa-star active-star" aria-hidden="true"></i>
+										    <i class="fa fa-star active-star" aria-hidden="true"></i>
+										    <i class="fa fa-star active-star" aria-hidden="true"></i>
+									    </div>
+									    {{/showstarratings}}
+				
+								    </div><!--//quote-rating-->
+								    <div class="quote-holder">
+									    {{#testimonialheading}}
+									    <h4 class="quote-title">
+										    {{{testimonialheading}}}
+									    </h4>
+									    {{/testimonialheading}}
+									    <div class="quote-content">
+										    {{{testimonial}}}
+									    </div>
+									    
+								    </div><!--//quote-holder-->
+								    
+								    <div class="source-holder">
+									    <div class="meta">
+										    {{#testimonialname}}
+										    <div class="name">{{{testimonialname}}}</div>
+										    {{/testimonialname}}
+										    {{#testimonialmeta}}
+										    <div class="info">{{{testimonialmeta}}}</div>
+										    {{/testimonialmeta}}
+									    </div><!--//meta-->
+								    </div><!--//source-holder-->
+								    
+								    
+								    
+								    <div class="quote-box-arrow"></div>
+		
+							    
+							    </div><!--//quote-box-->
+							    
+							    
+							
+							    {{^testimonialimage}}
+							    <div class="profile-holder">
+								    <img loading="lazy" src="{{{defaultimage}}}" alt="image"/>
+							    </div>
+							    {{/testimonialimage}}
+							    
+							    {{#testimonialimage}}
+							    <div class="profile-holder">
+								    <img loading="lazy" src="{{{testimonialimage}}}" alt="image"/>
+							    </div>
+							    {{/testimonialimage}}
+							   
+							    
+						    </div><!--//item-->
+						    {{/hastestimonial}}
+					    {{/testimonials}}
+		
+				    </div><!--//testimonial-carousel-->		
+				</div><!--//col-12-->
+		    </div><!--//inner-->    
+	    </div><!--//section-inner-->    
+    </div><!--//container-fluid-->
+</div><!--//testimonial-section-->
+{{/usetestimonials}}

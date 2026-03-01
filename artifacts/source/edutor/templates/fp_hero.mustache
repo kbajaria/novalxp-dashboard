@@ -1,0 +1,111 @@
+{{#useherosection}}
+<div class="hero-section">
+	
+	
+	
+	<div class="hero-slider-wrapper">
+		    
+			<div id="hero-carousel" class="hero-carousel carousel carousel-fade slide" data-bs-ride="carousel" data-bs-interval="8000">
+				{{#useheroslideshowindicators}}
+				<!-- Indicators -->
+				<div class="carousel-indicators">
+					{{#slideshow}}
+					{{#hasslide}}
+				    <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="{{{slidedatanumber}}}" {{#slideactive}}class="active"{{/slideactive}} aria-current="true" ></button>
+				    {{/hasslide}}
+					{{/slideshow}}
+				    
+				</div>
+				{{/useheroslideshowindicators}}
+	
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+
+					{{#slideshow}}
+					{{#hasslide}}
+					<div class="carousel-item slide-{{{slidenumber}}} {{#slideactive}}active{{/slideactive}}">
+						
+						<div class="item-content container-fluid">
+							<div class="row">
+		    					<div class="item-content-inner col-12 col-lg-7 col-xl-6">
+			    					{{#herologoimage}}  
+								    <div class="hero-logo-holder">
+										<img loading="lazy" class="hero-logo hero-logo-custom" src="{{{herologoimage}}}" alt="logo"/>
+								    </div>
+								    {{/herologoimage}}
+		    				        {{#slideheading}}
+						            <h2 class="slide-item-heading">{{{slideheading}}}</h2>
+						            {{/slideheading}}
+						            
+						            {{#slidecaption}}
+						            <div class="slide-item-caption">{{{slidecaption}}}</div>
+						            {{/slidecaption}}
+						            
+						            {{#slidecta}}
+						            <a class="slide-item-btn slide-item-btn-{{{slidenumber}}} btn" href="{{#slideurl}}{{{slideurl}}}{{/slideurl}}" {{#urlopennew}}target="_blank"{{/urlopennew}}>{{{slidecta}}}</a>
+						            {{/slidecta}}
+		
+		    					</div><!--//item-content-inner-->
+							</div><!--//row-->
+						</div><!--//item-content-->
+						{{#useherovideo}} 
+						<div class="video-play-holder text-lg-center">
+							<div class="row flex-row-reverse">
+								<div class="col-12 col-lg-5 col-xl-6">
+							        <a href="#" class="play-trigger pulse-effect" data-bs-toggle="modal" data-bs-target="#modal-video-0" ></a>
+							        {{#herovideo}}
+							        <div class="d-inline-block d-lg-none small-screen-text video-text">{{{herovideo}}}</div>
+							        {{/herovideo}}
+								</div>
+							</div><!--//row-->
+						</div>
+			            {{/useherovideo}}
+					</div><!--//item-->
+					{{/hasslide}}
+					{{/slideshow}}
+					
+					
+					
+					
+				</div><!--//carousel-inner-->
+				
+				
+				
+				
+		
+			</div><!--//hero-carousel-->
+			
+			
+			
+		
+	</div>
+
+</div><!--//hero-section-->
+
+
+
+{{#useherovideo}}
+<!-- Video Modal 0-->
+<div class="modal modal-video modal-video-0" id="modal-video-0" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel-0" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="video-container ratio ratio-16x9">
+                    {{#useyoutubevideo}}
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{{herovideoid}}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    {{/useyoutubevideo}}
+                    
+                    {{#usevimeovideo}}
+                    <iframe src="https://player.vimeo.com/video/{{{herovideoid}}}" width="720" height="405" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay; fullscreen"></iframe>
+                    {{/usevimeovideo}}
+                </div><!--//video-container-->
+            </div><!--//modal-body-->
+        </div><!--//modal-content-->
+    </div><!--//modal-dialog-->
+</div><!--//modal-->
+{{/useherovideo}}
+
+{{/useherosection}}

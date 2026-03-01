@@ -1,0 +1,726 @@
+block_html	version	2025100600
+block_myoverview	displaygroupingcustomfield	0
+block_myoverview	customfiltergrouping	
+tool_mobile	custommenuitems	
+tool_mobile	customlangstrings	
+theme_edutor	version	2025102200
+theme_edutor	preset	theme-1.scss
+theme_edutor	brandcolorprimary	#000000
+theme_edutor	brandcolorsecondary	#5F71C2
+theme_edutor	logo	/Nova_LXP_Primary_Logo.png
+theme_edutor	headerbgcolor	
+theme_edutor	usealert	
+theme_edutor	alertcontent	<p><strong>Alert content goes here!</strong> Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+theme_edutor	alertbgcolor	
+theme_edutor	footerlogoimage	
+theme_edutor	footerbrandingblock	
+theme_edutor	usefootersocial	1
+theme_edutor	footersocialsectiontitle	
+theme_edutor	usefooterblocks	1
+theme_edutor	footerblock1	<div data-canny=""> </div>\n<p>\n<script>\n!function(w,d,i,s){function l(){if(!d.getElementById(i)){var f=d.getElementsByTagName(s)[0],e=d.createElement(s);\ne.type="text/javascript",e.async=!0,e.src="https://canny.io/sdk.js",f.parentNode.insertBefore(e,f)}}\nif("function"!=typeof w.Canny){var c=function(){c.q.push(arguments)};c.q=[],w.Canny=c,\n"complete"===d.readyState?l():w.attachEvent?w.attachEvent("onload",l):w.addEventListener("load",l,!1)}}(window,document,"canny-jssdk","script");\n</script>\n<script>\nCanny('render', {\n  boardToken: 'novalxp-feedback',\n  basePath: '/',\n  theme: 'light'\n});\n</script>\n</p>
+theme_edutor	footerblock2	
+theme_edutor	footerblock3	
+theme_edutor	usefooterwidget	
+theme_edutor	footerwidgettitle	
+theme_edutor	footerwidget	
+theme_edutor	copyright	<p>Copyright © Finova</p>
+theme_edutor	footerbgcolor	
+theme_edutor	useherosection	1
+theme_edutor	useheroslideshowindicators	1
+theme_edutor	herologoimage	
+theme_edutor	useherovideo	1
+theme_edutor	herovideo	Watch video
+theme_edutor	herovideoswitcher	1
+theme_edutor	herovideoid	NW7yAhA3-ns
+theme_edutor	slide1cta	
+theme_edutor	slide1url	#link1
+theme_edutor	slide1urlopennew	
+theme_edutor	slide1ctacolor	
+theme_edutor	slide2cta	
+theme_edutor	slide2url	
+theme_edutor	slide2urlopennew	
+theme_edutor	slide2ctacolor	
+theme_edutor	slide3cta	
+theme_edutor	slide3url	
+theme_edutor	slide3urlopennew	
+theme_edutor	slide3ctacolor	
+theme_edutor	slide4cta	
+theme_edutor	slide4url	
+theme_edutor	slide4urlopennew	
+theme_edutor	slide4ctacolor	
+theme_edutor	slide5cta	Slide Five CTA
+theme_edutor	slide5url	#link5
+theme_edutor	slide5urlopennew	
+theme_edutor	slide5ctacolor	
+theme_edutor	slide6cta	Slide Six CTA
+theme_edutor	slide6url	#link6
+theme_edutor	slide6urlopennew	
+theme_edutor	slide6ctacolor	
+theme_edutor	uselogos	
+theme_edutor	logossectiontitle	
+theme_edutor	logossectionintro	
+theme_edutor	logo1image	
+theme_edutor	logo1url	
+theme_edutor	logo2image	
+theme_edutor	logo2url	
+theme_edutor	logo3image	
+theme_edutor	logo3url	
+theme_edutor	logo4image	
+theme_edutor	logo4url	
+theme_edutor	logo5image	
+theme_edutor	logo5url	
+theme_edutor	logo6image	
+theme_edutor	logo6url	
+theme_edutor	logo7image	
+theme_edutor	logo7url	
+theme_edutor	logo8image	
+theme_edutor	logo8url	
+theme_edutor	logo9image	
+theme_edutor	logo9url	
+theme_edutor	logo10image	
+theme_edutor	logo10url	
+theme_edutor	logo11image	
+theme_edutor	logo11url	
+theme_edutor	logo12image	
+theme_edutor	logo12url	
+theme_edutor	usesearchsection	1
+theme_edutor	searchsectiontitle	Find Your Next Learning Journey
+theme_edutor	searchsectionintro	<p>Search across NovaLXP’s growing library of courses, resources, and learning paths. Whether you’re onboarding, upskilling, or exploring new ideas, our smart search helps you discover exactly what you need—fast.</p>
+theme_edutor	searchsectionbuttontext	
+theme_edutor	searchsectionbuttonurl	
+theme_edutor	searchsectionbuttonurlopennew	
+theme_edutor	usesearch	1
+theme_edutor	searchsectionbgcolor	#000000
+theme_edutor	usefeaturedsection	1
+theme_edutor	featuredsectiontitle	Try a featured course, or create one!
+theme_edutor	featuredsectionintro	
+theme_edutor	paneblockbgcolor	
+theme_edutor	paneblocktextcolor	
+theme_edutor	paneblocklabelbgcolor	
+theme_edutor	paneblocks_xs	1
+theme_edutor	paneblocks_sm	2
+theme_edutor	paneblocks_md	3
+theme_edutor	paneblocks_lg	4
+theme_edutor	paneblocks_xl	5
+theme_edutor	paneblocks_xxl	5
+theme_edutor	pane1title	
+theme_edutor	pane1intro	<p>We’ve curated the most popular and in‑demand learning paths just for you — from <strong>Onboarding &amp; Culture</strong> to <strong>Compliance &amp; Risk</strong>, <strong>Core Fintech Skills</strong>, <strong>Customer Excellence</strong>, <strong>Innovation &amp; Future Skills</strong>, and <strong>Leadership &amp; Growth</strong>. Each course has been hand‑picked to reflect the skills and knowledge that matter most in today’s financial services landscape, ensuring that your learning journey feels relevant, engaging, and tailored to your success.</p>
+theme_edutor	usepane1blocks	1
+theme_edutor	pane1block1title	APIs in Finance
+theme_edutor	pane1block1image	/fintech.png
+theme_edutor	pane1block1content	Application Programming Interfaces (APIs) are the invisible connectors that allow different software systems to communicate with each other.
+theme_edutor	pane1block1url	https://learn.novalxp.co.uk/course/view.php?id=7
+theme_edutor	pane1block1urlopennew	
+theme_edutor	pane1block1label	
+theme_edutor	pane1block1price	
+theme_edutor	pane1block2title	Day One at Finova
+theme_edutor	pane1block2image	/Onboarding.png
+theme_edutor	pane1block2content	Start your journey with Finova through our tailored onboarding pathway. 
+theme_edutor	pane1block2url	https://learn.novalxp.co.uk/course/view.php?id=5
+theme_edutor	pane1block2urlopennew	
+theme_edutor	pane1block2label	
+theme_edutor	pane1block2price	
+theme_edutor	pane1block3title	GDPR & Data Privacy
+theme_edutor	pane1block3image	/Risk_Compliance.png
+theme_edutor	pane1block3content	In today’s digital economy, personal data is one of the most valuable assets an organization can hold.
+theme_edutor	pane1block3url	https://learn.novalxp.co.uk/course/view.php?id=6
+theme_edutor	pane1block3urlopennew	
+theme_edutor	pane1block3label	
+theme_edutor	pane1block3price	
+theme_edutor	pane1block4title	CEO Welcome
+theme_edutor	pane1block4image	/gareth_welcome.png
+theme_edutor	pane1block4content	A warm welcome from Gareth
+theme_edutor	pane1block4url	https://learn.novalxp.co.uk/course/view.php?id=8
+theme_edutor	pane1block4urlopennew	
+theme_edutor	pane1block4label	
+theme_edutor	pane1block4price	
+theme_edutor	pane1block5title	NovaLXP Labs - Web Administration
+theme_edutor	pane1block5image	/novalxplabs.png
+theme_edutor	pane1block5content	Learn web administration with a hands-on lab
+theme_edutor	pane1block5url	https://learn.novalxp.co.uk/course/view.php?id=43
+theme_edutor	pane1block5urlopennew	
+theme_edutor	pane1block5label	
+theme_edutor	pane1block5price	
+theme_edutor	pane1block6title	Reserving a desk
+theme_edutor	pane1block6image	/wayleadr.png
+theme_edutor	pane1block6content	Learn how to reserve a space with Wayleadr
+theme_edutor	pane1block6url	https://learn.novalxp.co.uk/course/view.php?id=42
+theme_edutor	pane1block6urlopennew	
+theme_edutor	pane1block6label	
+theme_edutor	pane1block6price	
+theme_edutor	pane1block7title	
+theme_edutor	pane1block7image	
+theme_edutor	pane1block7content	
+theme_edutor	pane1block7url	
+theme_edutor	pane1block7urlopennew	
+theme_edutor	pane1block7label	
+theme_edutor	pane1block7price	
+theme_edutor	pane1block8title	
+theme_edutor	pane1block8image	
+theme_edutor	pane1block8content	
+theme_edutor	pane1block8url	
+theme_edutor	pane1block8urlopennew	
+theme_edutor	pane1block8label	
+theme_edutor	pane1block8price	
+theme_edutor	pane1block9title	
+theme_edutor	pane1block9image	
+theme_edutor	pane1block9content	
+theme_edutor	pane1block9url	
+theme_edutor	pane1block9urlopennew	
+theme_edutor	pane1block9label	
+theme_edutor	pane1block9price	
+theme_edutor	pane1block10title	
+theme_edutor	pane1block10image	
+theme_edutor	pane1block10content	
+theme_edutor	pane1block10url	
+theme_edutor	pane1block10urlopennew	
+theme_edutor	pane1block10label	
+theme_edutor	pane1block10price	
+theme_edutor	pane2title	We'd love to hear from you!
+theme_edutor	pane2intro	<div style="text-align: center; margin: 20px 0;"><a style="display: inline-block; padding: 14px 36px; background-color: #5f71c2; color: #ffffff; font-size: 18px; font-weight: 600; text-decoration: none; border-radius: 0px; transition: background-color 0.2s ease;" href="https://finova2.canny.io/novalxp-feedback" target="_blank" rel="noopener noreferrer"> Feedback </a></div>
+theme_edutor	usepane2blocks	
+theme_edutor	pane2block1title	
+theme_edutor	pane2block1image	
+theme_edutor	pane2block1content	
+theme_edutor	pane2block1url	#link
+theme_edutor	pane2block1urlopennew	
+theme_edutor	pane2block1label	
+theme_edutor	pane2block1price	
+theme_edutor	pane2block2title	Pane Two Block 2
+theme_edutor	pane2block2image	
+theme_edutor	pane2block2content	Block 2 content goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+theme_edutor	pane2block2url	#link
+theme_edutor	pane2block2urlopennew	
+theme_edutor	pane2block2label	
+theme_edutor	pane2block2price	
+theme_edutor	pane2block3title	Pane Two Block 3
+theme_edutor	pane2block3image	
+theme_edutor	pane2block3content	Block 3 content goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+theme_edutor	pane2block3url	#link
+theme_edutor	pane2block3urlopennew	
+theme_edutor	pane2block3label	
+theme_edutor	pane2block3price	
+theme_edutor	pane2block4title	Pane Two Block 4
+theme_edutor	pane2block4image	
+theme_edutor	pane2block4content	Block 4 content goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+theme_edutor	pane2block4url	#link
+theme_edutor	pane2block4urlopennew	
+theme_edutor	pane2block4label	
+theme_edutor	pane2block4price	
+theme_edutor	pane2block5title	Pane Two Block 5
+theme_edutor	pane2block5image	
+theme_edutor	pane2block5content	Block 5 content goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+theme_edutor	pane2block5url	#link
+theme_edutor	pane2block5urlopennew	
+theme_edutor	pane2block5label	
+theme_edutor	pane2block5price	
+theme_edutor	pane2block6title	
+theme_edutor	pane2block6image	
+theme_edutor	pane2block6content	
+theme_edutor	pane2block6url	
+theme_edutor	pane2block6urlopennew	
+theme_edutor	pane2block6label	
+theme_edutor	pane2block6price	
+theme_edutor	pane2block7title	
+theme_edutor	pane2block7image	
+theme_edutor	pane2block7content	
+theme_edutor	pane2block7url	
+theme_edutor	pane2block7urlopennew	
+theme_edutor	pane2block7label	
+theme_edutor	pane2block7price	
+theme_edutor	pane2block8title	
+theme_edutor	pane2block8image	
+theme_edutor	pane2block8content	
+theme_edutor	pane2block8url	
+theme_edutor	pane2block8urlopennew	
+theme_edutor	pane2block8label	
+theme_edutor	pane2block8price	
+theme_edutor	pane2block9title	
+theme_edutor	pane2block9image	
+theme_edutor	pane2block9content	
+theme_edutor	pane2block9url	
+theme_edutor	pane2block9urlopennew	
+theme_edutor	pane2block9label	
+theme_edutor	pane2block9price	
+theme_edutor	pane2block10title	
+theme_edutor	pane2block10image	
+theme_edutor	pane2block10content	
+theme_edutor	pane2block10url	
+theme_edutor	pane2block10urlopennew	
+theme_edutor	pane2block10label	
+theme_edutor	pane2block10price	
+theme_edutor	pane3title	Request New Course
+theme_edutor	pane3intro	<div style="text-align: center; margin: 20px 0;">\n<p style="max-width: 700px; margin: 0px auto 20px; font-size: 16px; line-height: 1.5; text-align: center;">Coming soon!  We are working to provide AI-generated videos in courses...</p>\n<p style="max-width: 700px; margin: 0px auto 20px; font-size: 16px; line-height: 1.5; text-align: center;"></p>\n<a style="display: inline-block; padding: 14px 36px; background-color: #5f71c2; color: #ffffff; font-size: 18px; font-weight: 600; text-decoration: none; border-radius: 0px; transition: background-color 0.2s ease;" href="https://finova2.canny.io/nova-lxp-course-requests" target="_blank" rel="noopener noreferrer"> Request a Course </a></div>
+theme_edutor	usepane3blocks	
+theme_edutor	pane3block1title	
+theme_edutor	pane3block1image	
+theme_edutor	pane3block1content	
+theme_edutor	pane3block1url	
+theme_edutor	pane3block1urlopennew	
+theme_edutor	pane3block1label	
+theme_edutor	pane3block1price	
+theme_edutor	pane3block2title	
+theme_edutor	pane3block2image	
+theme_edutor	pane3block2content	
+theme_edutor	pane3block2url	
+theme_edutor	pane3block2urlopennew	
+theme_edutor	pane3block2label	
+theme_edutor	pane3block2price	
+theme_edutor	pane3block3title	
+theme_edutor	pane3block3image	
+theme_edutor	pane3block3content	Block 3 content goes here Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+theme_edutor	pane3block3url	
+theme_edutor	pane3block3urlopennew	
+theme_edutor	pane3block3label	
+theme_edutor	pane3block3price	
+theme_edutor	pane3block4title	
+theme_edutor	pane3block4image	
+theme_edutor	pane3block4content	
+theme_edutor	pane3block4url	
+theme_edutor	pane3block4urlopennew	
+theme_edutor	pane3block4label	
+theme_edutor	pane3block4price	
+theme_edutor	pane3block5title	
+theme_edutor	pane3block5image	
+theme_edutor	pane3block5content	
+theme_edutor	pane3block5url	
+theme_edutor	pane3block5urlopennew	
+theme_edutor	pane3block5label	
+theme_edutor	pane3block5price	
+theme_edutor	pane3block6title	
+theme_edutor	pane3block6image	
+theme_edutor	pane3block6content	
+theme_edutor	pane3block6url	
+theme_edutor	pane3block6urlopennew	
+theme_edutor	pane3block6label	
+theme_edutor	pane3block6price	
+theme_edutor	pane3block7title	
+theme_edutor	pane3block7image	
+theme_edutor	pane3block7content	
+theme_edutor	pane3block7url	
+theme_edutor	pane3block7urlopennew	
+theme_edutor	pane3block7label	
+theme_edutor	pane3block7price	
+theme_edutor	pane3block8title	
+theme_edutor	pane3block8image	
+theme_edutor	pane3block8content	
+theme_edutor	pane3block8url	
+theme_edutor	pane3block8urlopennew	
+theme_edutor	pane3block8label	
+theme_edutor	pane3block8price	
+theme_edutor	pane3block9title	
+theme_edutor	pane3block9image	
+theme_edutor	pane3block9content	
+theme_edutor	pane3block9url	
+theme_edutor	pane3block9urlopennew	
+theme_edutor	pane3block9label	
+theme_edutor	pane3block9price	
+theme_edutor	pane3block10title	
+theme_edutor	pane3block10image	
+theme_edutor	pane3block10content	
+theme_edutor	pane3block10url	#link
+theme_edutor	pane3block10urlopennew	
+theme_edutor	pane3block10label	
+theme_edutor	pane3block10price	
+theme_edutor	pane4title	
+theme_edutor	pane4intro	<div style="font-family: Arial, sans-serif; margin: 20px 0;">\n<p style="margin-bottom: 20px; font-size: 15px; line-height: 1.5; max-width: 700px; text-align: left; margin-left: auto; margin-right: auto;">Create a simple, text based course in five minutes. Click on the button below, enter your course request in the form, and click post. Be sure to include sufficient detail for your course, including objectives and desired outcomes.</p>\n<div style="text-align: center;"><a style="display: inline-block; padding: 14px 36px; background-color: #5f71c2; color: #ffffff; font-size: 18px; font-weight: 600; text-decoration: none; border-radius: 0px; transition: background-color 0.2s ease;" href="https://finova2.canny.io/novalxp-simple-training-requests/create" target="_blank" rel="noopener noreferrer"> Submit Course Request </a></div>\n</div>
+theme_edutor	usepane4blocks	1
+theme_edutor	pane4block1title	
+theme_edutor	pane4block1image	
+theme_edutor	pane4block1content	
+theme_edutor	pane4block1url	
+theme_edutor	pane4block1urlopennew	
+theme_edutor	pane4block1label	
+theme_edutor	pane4block1price	
+theme_edutor	pane4block2title	
+theme_edutor	pane4block2image	
+theme_edutor	pane4block2content	
+theme_edutor	pane4block2url	
+theme_edutor	pane4block2urlopennew	
+theme_edutor	pane4block2label	
+theme_edutor	pane4block2price	
+theme_edutor	pane4block3title	
+theme_edutor	pane4block3image	
+theme_edutor	pane4block3content	
+theme_edutor	pane4block3url	
+theme_edutor	pane4block3urlopennew	
+theme_edutor	pane4block3label	
+theme_edutor	pane4block3price	
+theme_edutor	pane4block4title	
+theme_edutor	pane4block4image	
+theme_edutor	pane4block4content	
+theme_edutor	pane4block4url	
+theme_edutor	pane4block4urlopennew	
+theme_edutor	pane4block4label	
+theme_edutor	pane4block4price	
+theme_edutor	pane4block5title	
+theme_edutor	pane4block5image	
+theme_edutor	pane4block5content	
+theme_edutor	pane4block5url	
+theme_edutor	pane4block5urlopennew	
+theme_edutor	pane4block5label	
+theme_edutor	pane4block5price	
+theme_edutor	pane4block6title	
+theme_edutor	pane4block6image	
+theme_edutor	pane4block6content	
+theme_edutor	pane4block6url	
+theme_edutor	pane4block6urlopennew	
+theme_edutor	pane4block6label	
+theme_edutor	pane4block6price	
+theme_edutor	pane4block7title	
+theme_edutor	pane4block7image	
+theme_edutor	pane4block7content	
+theme_edutor	pane4block7url	
+theme_edutor	pane4block7urlopennew	
+theme_edutor	pane4block7label	
+theme_edutor	pane4block7price	
+theme_edutor	pane4block8title	
+theme_edutor	pane4block8image	
+theme_edutor	pane4block8content	
+theme_edutor	pane4block8url	
+theme_edutor	pane4block8urlopennew	
+theme_edutor	pane4block8label	
+theme_edutor	pane4block8price	
+theme_edutor	pane4block9title	
+theme_edutor	pane4block9image	
+theme_edutor	pane4block9content	
+theme_edutor	pane4block9url	
+theme_edutor	pane4block9urlopennew	
+theme_edutor	pane4block9label	
+theme_edutor	pane4block9price	
+theme_edutor	pane4block10title	
+theme_edutor	pane4block10image	
+theme_edutor	pane4block10content	
+theme_edutor	pane4block10url	
+theme_edutor	pane4block10urlopennew	
+theme_edutor	pane4block10label	
+theme_edutor	pane4block10price	
+theme_edutor	pane5title	
+theme_edutor	pane5intro	
+theme_edutor	usepane5blocks	1
+theme_edutor	pane5block1title	
+theme_edutor	pane5block1image	
+theme_edutor	pane5block1content	
+theme_edutor	pane5block1url	
+theme_edutor	pane5block1urlopennew	
+theme_edutor	pane5block1label	
+theme_edutor	pane5block1price	
+theme_edutor	pane5block2title	
+theme_edutor	pane5block2image	
+theme_edutor	pane5block2content	
+theme_edutor	pane5block2url	
+theme_edutor	pane5block2urlopennew	
+theme_edutor	pane5block2label	
+theme_edutor	pane5block2price	
+theme_edutor	pane5block3title	
+theme_edutor	pane5block3image	
+theme_edutor	pane5block3content	
+theme_edutor	pane5block3url	
+theme_edutor	pane5block3urlopennew	
+theme_edutor	pane5block3label	
+theme_edutor	pane5block3price	
+theme_edutor	pane5block4title	
+theme_edutor	pane5block4image	
+theme_edutor	pane5block4content	
+theme_edutor	pane5block4url	
+theme_edutor	pane5block4urlopennew	
+theme_edutor	pane5block4label	
+theme_edutor	pane5block4price	
+theme_edutor	pane5block5title	
+theme_edutor	pane5block5image	
+theme_edutor	pane5block5content	
+theme_edutor	pane5block5url	
+theme_edutor	pane5block5urlopennew	
+theme_edutor	pane5block5label	
+theme_edutor	pane5block5price	
+theme_edutor	pane5block6title	
+theme_edutor	pane5block6image	
+theme_edutor	pane5block6content	
+theme_edutor	pane5block6url	
+theme_edutor	pane5block6urlopennew	
+theme_edutor	pane5block6label	
+theme_edutor	pane5block6price	
+theme_edutor	pane5block7title	
+theme_edutor	pane5block7image	
+theme_edutor	pane5block7content	
+theme_edutor	pane5block7url	
+theme_edutor	pane5block7urlopennew	
+theme_edutor	pane5block7label	
+theme_edutor	pane5block7price	
+theme_edutor	pane5block8title	
+theme_edutor	pane5block8image	
+theme_edutor	pane5block8content	
+theme_edutor	pane5block8url	
+theme_edutor	pane5block8urlopennew	
+theme_edutor	pane5block8label	
+theme_edutor	pane5block8price	
+theme_edutor	pane5block9title	
+theme_edutor	pane5block9image	
+theme_edutor	pane5block9content	
+theme_edutor	pane5block9url	
+theme_edutor	pane5block9urlopennew	
+theme_edutor	pane5block9label	
+theme_edutor	pane5block9price	
+theme_edutor	pane5block10title	
+theme_edutor	pane5block10image	
+theme_edutor	pane5block10content	
+theme_edutor	pane5block10url	
+theme_edutor	pane5block10urlopennew	
+theme_edutor	pane5block10label	
+theme_edutor	pane5block10price	
+theme_edutor	pane6title	Pane Six Heading
+theme_edutor	pane6intro	
+theme_edutor	usepane6blocks	1
+theme_edutor	pane6block1title	
+theme_edutor	pane6block1image	
+theme_edutor	pane6block1content	
+theme_edutor	pane6block1url	
+theme_edutor	pane6block1urlopennew	
+theme_edutor	pane6block1label	
+theme_edutor	pane6block1price	
+theme_edutor	pane6block2title	
+theme_edutor	pane6block2image	
+theme_edutor	pane6block2content	
+theme_edutor	pane6block2url	
+theme_edutor	pane6block2urlopennew	
+theme_edutor	pane6block2label	
+theme_edutor	pane6block2price	
+theme_edutor	pane6block3title	
+theme_edutor	pane6block3image	
+theme_edutor	pane6block3content	
+theme_edutor	pane6block3url	
+theme_edutor	pane6block3urlopennew	
+theme_edutor	pane6block3label	
+theme_edutor	pane6block3price	
+theme_edutor	pane6block4title	
+theme_edutor	pane6block4image	
+theme_edutor	pane6block4content	
+theme_edutor	pane6block4url	
+theme_edutor	pane6block4urlopennew	
+theme_edutor	pane6block4label	
+theme_edutor	pane6block4price	
+theme_edutor	pane6block5title	
+theme_edutor	pane6block5image	
+theme_edutor	pane6block5content	
+theme_edutor	pane6block5url	
+theme_edutor	pane6block5urlopennew	
+theme_edutor	pane6block5label	
+theme_edutor	pane6block5price	
+theme_edutor	pane6block6title	
+theme_edutor	pane6block6image	
+theme_edutor	pane6block6content	
+theme_edutor	pane6block6url	
+theme_edutor	pane6block6urlopennew	
+theme_edutor	pane6block6label	
+theme_edutor	pane6block6price	
+theme_edutor	pane6block7title	
+theme_edutor	pane6block7image	
+theme_edutor	pane6block7content	
+theme_edutor	pane6block7url	
+theme_edutor	pane6block7urlopennew	
+theme_edutor	pane6block7label	
+theme_edutor	pane6block7price	
+theme_edutor	pane6block8title	
+theme_edutor	pane6block8image	
+theme_edutor	pane6block8content	
+theme_edutor	pane6block8url	
+theme_edutor	pane6block8urlopennew	
+theme_edutor	pane6block8label	
+theme_edutor	pane6block8price	
+theme_edutor	pane6block9title	
+theme_edutor	pane6block9image	
+theme_edutor	pane6block9content	
+theme_edutor	pane6block9url	
+theme_edutor	pane6block9urlopennew	
+theme_edutor	pane6block9label	
+theme_edutor	pane6block9price	
+theme_edutor	pane6block10title	
+theme_edutor	pane6block10image	
+theme_edutor	pane6block10content	
+theme_edutor	pane6block10url	
+theme_edutor	pane6block10urlopennew	
+theme_edutor	pane6block10label	
+theme_edutor	pane6block10price	
+theme_edutor	categoriessectiontitle	Top Categories
+theme_edutor	categoriesbuttontext	
+theme_edutor	categoriesbuttonurl	
+theme_edutor	categoriesbuttonurlopennew	
+theme_edutor	category1title	Category One
+theme_edutor	category1content	
+theme_edutor	category1url	#link1
+theme_edutor	category2title	Category Two
+theme_edutor	category2content	
+theme_edutor	category2url	#link2
+theme_edutor	category3title	Category Three
+theme_edutor	category3content	
+theme_edutor	category3url	#link3
+theme_edutor	category4title	Category Four
+theme_edutor	category4content	
+theme_edutor	category4url	#link4
+theme_edutor	category5title	Category Five
+theme_edutor	category5content	
+theme_edutor	category5url	#link5
+theme_edutor	category6title	Category Six
+theme_edutor	category6content	
+theme_edutor	category6url	#link6
+theme_edutor	category7title	Category Seven
+theme_edutor	category7content	
+theme_edutor	category7url	#link7
+theme_edutor	category8title	Category Eight
+theme_edutor	category8content	
+theme_edutor	category8url	#link8
+theme_edutor	category9title	Category Nine
+theme_edutor	category9content	
+theme_edutor	category9url	
+theme_edutor	category10title	Category Ten
+theme_edutor	category10content	
+theme_edutor	category10url	
+theme_edutor	category11title	
+theme_edutor	category11content	
+theme_edutor	category11url	
+theme_edutor	category12title	
+theme_edutor	category12content	
+theme_edutor	category12url	
+theme_edutor	category13title	
+theme_edutor	category13content	
+theme_edutor	category13url	
+theme_edutor	category14title	
+theme_edutor	category14content	
+theme_edutor	category14url	
+theme_edutor	category15title	
+theme_edutor	category15content	
+theme_edutor	category15url	
+theme_edutor	category16title	
+theme_edutor	category16content	
+theme_edutor	category16url	
+theme_edutor	category17title	
+theme_edutor	category17content	
+theme_edutor	category17url	
+theme_edutor	category18title	
+theme_edutor	category18content	
+theme_edutor	category18url	
+theme_edutor	category19title	
+theme_edutor	category19content	
+theme_edutor	category19url	
+theme_edutor	category20title	
+theme_edutor	category20content	
+theme_edutor	category20url	
+theme_edutor	usectasection	1
+theme_edutor	ctasectiontitle	Not your traditional training site
+theme_edutor	ctasectioncontent	<p>NovaLXP delivers AI‑powered personalization, adaptive learning journeys, and actionable insights that go far beyond the static course management of a traditional LMS.</p>
+theme_edutor	ctasectionbuttontext	Browse
+theme_edutor	ctasectionbuttonurl	course/index.php
+theme_edutor	ctasectionbuttonurlopennew	
+theme_edutor	ctasectionimage	
+theme_edutor	ctasectionbgcolor	
+theme_edutor	usectadatabox	
+theme_edutor	ctadataitem1title	
+theme_edutor	ctadataitem1meta	
+theme_edutor	ctadataitem2title	
+theme_edutor	ctadataitem2meta	
+theme_edutor	ctadataitem3title	
+theme_edutor	ctadataitem3meta	
+theme_edutor	ctadataitem4title	
+theme_edutor	ctadataitem4meta	
+theme_edutor	benefit1title	AI‑Powered Personalization
+theme_edutor	benefit1content	<p>Learners don’t just browse a static course catalog — NovaLXP intelligently recommends the <em>next best skill</em> based on completions, tags, and role needs, creating a Netflix‑style, binge‑worthy experience</p>
+theme_edutor	benefit2title	Guided Learning Journeys
+theme_edutor	benefit2content	<p>Instead of one‑off modules, NovaLXP sequences content into dynamic pathways that adapt as learners progress, ensuring every journey feels relevant, immersive, and outcome‑driven.</p>
+theme_edutor	benefit3title	Actionable Insights for Leaders
+theme_edutor	benefit3content	<p>Managers and stakeholders gain real‑time dashboards that show not just completions, but <em>capability growth and impact</em>, helping align learning directly with business goals.</p>
+theme_edutor	benefit4title	
+theme_edutor	benefit4content	
+theme_edutor	benefit5title	
+theme_edutor	benefit5content	
+theme_edutor	benefit6title	
+theme_edutor	benefit6content	
+theme_edutor	faqsectiontitle	Frequently Asked Questions
+theme_edutor	faqsectionintro	
+theme_edutor	faq1title	How do I update my profile in NovaLXP?
+theme_edutor	faq1content	<p>After logging in, click on your name in the top‑right corner and select <strong>Profile</strong>. From there, you can add a photo, update your details, and adjust notification preferences so your learning experience feels more personal.</p>
+theme_edutor	faq2title	Where can I find my courses?
+theme_edutor	faq2content	<p>Once logged in, your <strong>Dashboard</strong> shows all the courses you’re enrolled in. You can also use the <strong>Search bar</strong> or the <strong>Course Catalogue</strong> to explore new learning opportunities recommended for you.</p>
+theme_edutor	faq3title	How do I submit assignments or activities?
+theme_edutor	faq3content	<p>Inside each course, you’ll see activities like assignments, quizzes, or forums. Click the activity, follow the instructions, and upload your work or complete the task online. NovaLXP will confirm your submission and track your progress automatically.</p>
+theme_edutor	faq4title	How do I track my progress?
+theme_edutor	faq4content	<p>Your <strong>Progress Bar</strong> and <strong>Completion Checkmarks</strong> show how far you’ve gone in each course. You can also view your <strong>Grades</strong> and <strong>Feedback</strong> under the “My Learning” section to see results and instructor comments.</p>
+theme_edutor	faq5title	Can I access NovaLXP on my phone or tablet?
+theme_edutor	faq5content	<p>Yes. NovaLXP is fully responsive, so you can log in through your browser on any device. Coming soon:  the <strong>NovaLXP mobile app</strong> (powered by Moodle’s app), which lets you download content for offline learning.</p>
+theme_edutor	faq6title	
+theme_edutor	faq6content	
+theme_edutor	faq7title	
+theme_edutor	faq7content	
+theme_edutor	faq8title	
+theme_edutor	faq8content	
+theme_edutor	faq9title	
+theme_edutor	faq9content	
+theme_edutor	faq10title	
+theme_edutor	faq10content	
+theme_edutor	faqsectionbuttontext	View More
+theme_edutor	faqsectionbuttonurl	#link
+theme_edutor	faqsectionbuttonurlopennew	
+theme_edutor	promosectiontitle	
+theme_edutor	promosectionintro	
+theme_edutor	carouselitem1content	<p>You can add up to 6 carousel items to promote your content or courses. Each carousel item can also include a YouTube video. It's a great way to grab your visitors' attention and spark their interest!</p>
+theme_edutor	carouselitem1buttontext	Find out more
+theme_edutor	carouselitem1buttonurl	
+theme_edutor	carouselitem1buttonurlopennew	
+theme_edutor	carouselitem2content	<p>You can add up to 6 carousel items to promote your content or courses. You also have the option to add YouTube or Vimeo videos to each carousel item. It is a great way to catch your visitors' attention and interest!</p>
+theme_edutor	carouselitem2buttontext	Find out more
+theme_edutor	carouselitem2buttonurl	
+theme_edutor	carouselitem2buttonurlopennew	
+theme_edutor	carouselitem3content	<p>You can add up to 6 carousel items to promote your content or courses. You also have the option to add YouTube or Vimeo videos to each carousel item. It is a great way to catch your visitors' attention and interest!</p>
+theme_edutor	carouselitem3buttontext	Find out more
+theme_edutor	carouselitem3buttonurl	
+theme_edutor	carouselitem3buttonurlopennew	
+theme_edutor	carouselitem4content	
+theme_edutor	carouselitem4buttontext	
+theme_edutor	carouselitem4buttonurl	
+theme_edutor	carouselitem4buttonurlopennew	
+theme_edutor	carouselitem5content	
+theme_edutor	carouselitem5buttontext	
+theme_edutor	carouselitem5buttonurl	
+theme_edutor	carouselitem5buttonurlopennew	
+theme_edutor	carouselitem6content	
+theme_edutor	carouselitem6buttontext	
+theme_edutor	carouselitem6buttonurl	
+theme_edutor	carouselitem6buttonurlopennew	
+theme_edutor	teachersectiontitle	Learn From The Best
+theme_edutor	teachersectionintro	<p>Section intro goes here. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+theme_edutor	teachersbuttontext	
+theme_edutor	teachersbuttonurl	
+theme_edutor	teachersbuttonurlopennew	
+theme_edutor	teacher1content	<p>Teacher bio 1 goes here. You can add up to 20 teachers. Lorem ipsum dolor sit amet consectetur adipiscing elit. Integer suscipit, elit sed placerat aliquam, velit nulla semper lectus.</p>
+theme_edutor	teacher2content	<p>Teacher bio 2 goes here. You can add up to 20 teachers. Lorem ipsum dolor sit amet consectetur adipiscing elit. Integer suscipit, elit sed placerat aliquam, velit nulla semper lectus.</p>
+theme_edutor	teacher3content	<p>Teacher bio 3 goes here. You can add up to 20 teachers. Lorem ipsum dolor sit amet consectetur adipiscing elit. Integer suscipit, elit sed placerat aliquam, velit nulla semper lectus.</p>
+theme_edutor	teacher4content	
+theme_edutor	teacher5content	
+theme_edutor	teacher6content	
+theme_edutor	teacher7content	
+theme_edutor	teacher8content	
+theme_edutor	teacher9content	
+theme_edutor	teacher10content	
+theme_edutor	teacher11content	
+theme_edutor	teacher12content	
+theme_edutor	teacher13content	
+theme_edutor	teacher14content	
+theme_edutor	teacher15content	
+theme_edutor	teacher16content	
+theme_edutor	teacher17content	
+theme_edutor	teacher18content	
+theme_edutor	teacher19content	
+theme_edutor	teacher20content	
+theme_edutor	testimonialsectiontitle	Don't Take Our Word For It
+theme_edutor	testimonialsectionintro	<p>Section intro goes here. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+theme_edutor	testimonialsbuttontext	
+theme_edutor	testimonialsbuttonurl	
+theme_edutor	testimonialsbuttonurlopennew	
+theme_edutor	testimonial1content	<p>Testimonial 1 goes here. You can add up to 6 testimonials. Lorem ipsum dolor sit amet consectetur adipiscing elit. Integer suscipit, elit sed placerat aliquam, velit nulla semper lectus.</p>
+theme_edutor	testimonial2content	<p>Testimonial 2 goes here. You can add up to 6 testimonials. Lorem ipsum dolor sit amet consectetur adipiscing elit. Integer suscipit, elit sed placerat aliquam, velit nulla semper lectus.</p>
+theme_edutor	testimonial3content	<p>Testimonial 3 goes here. You can add up to 6 testimonials. Lorem ipsum dolor sit amet consectetur adipiscing elit. Integer suscipit, elit sed placerat aliquam, velit nulla semper lectus.</p>
+theme_edutor	testimonial4content	
+theme_edutor	testimonial5content	
+theme_edutor	testimonial6content	
+theme_edutor	usecourseheaderimage	1
+theme_edutor	courseheaderimageheight	360px
+theme_edutor	loginlogo	

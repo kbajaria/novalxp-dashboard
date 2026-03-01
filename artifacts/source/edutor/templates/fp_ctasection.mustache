@@ -1,0 +1,95 @@
+{{#hasctasection}}
+<div class="cta-section {{#usebenefits}}has-benefits{{/usebenefits}}">
+	<div class="container-fluid">
+		<div class="cta-section-upper">
+			<div class="pattern-holder">	
+			</div>
+			<div class="row">
+				<div class="cta-main col-12 col-md-8">
+					{{#ctatitle}}
+					<h2 class="cta-title">{{{ctatitle}}}</h2>
+					{{/ctatitle}}
+					{{#ctacontent}}
+					<div class="cta-content">
+						{{{ctacontent}}}						
+					</div><!--//cta-content-->
+					{{/ctacontent}}
+					
+					{{#hasctadatabox}}
+					<div class="cta-data-box mb-3">
+						<div class="row">
+							{{#ctadataitems}}
+							<div class="item col-6 col-xl-3">
+								<div class="item-inner p-3 text-white text-center">
+									
+									{{#ctadataitemtitle}}<div class="data-title">{{{ctadataitemtitle}}}</div>{{/ctadataitemtitle}}
+									{{#ctadataitemmeta}}<div class="data-meta">{{{ctadataitemmeta}}}</div>{{/ctadataitemmeta}}
+									
+								</div>
+							</div><!--//item-->		
+							{{/ctadataitems}}
+										
+						</div><!--//row-->
+					</div><!--//cta-data-box-->
+					{{/hasctadatabox}}
+					
+					{{#hasctabutton}}
+					<a class="btn theme-btn-cta" href="{{{ctaurl}}}" {{#urlopennew}}target="_blank"{{/urlopennew}}>{{{ctabutton}}}</a>
+					{{/hasctabutton}}
+					
+				</div><!--//cta-main-->
+                {{#ctasectionimage}}
+			    <div class="cta-figure col-12 col-md-4">
+					<div class="cta-figure-holder">	
+						<img loading="lazy" src="{{{ctasectionimage}}}" alt="image">
+					</div><!--//cta-figure-holder-->
+			    </div>
+			    {{/ctasectionimage}}
+			</div><!--//row-->
+		</div><!--//cta-section-upper-->
+		<div class="cta-section-lower">
+			{{#usebenefits}}
+			<div class="cta-benefits">
+			    <div class="cta-benefits-inner">
+				    <div class="row">
+					    {{#benefits}}
+						    {{#hasbenefit}}
+						    <div class="item col-lg-4 col-12">
+							    <div class="item-inner">
+								    <div class="pattern-holder"></div>
+							       
+							        {{^usebenefitimage}}
+								    {{#benefiticon}}
+					                <div class="icon-holder text-center">
+					                    <i class="material-icons">{{{benefiticon}}}</i>              
+					                </div><!--//icon-->
+					                {{/benefiticon}}
+					                {{/usebenefitimage}}
+					               
+					                
+					                {{#usebenefitimage}}
+					                {{#benefitimage}}
+					                <div class="image-holder text-center">
+					                    <img src="{{{benefitimage}}}" alt="image">             
+					                </div><!--//icon-->
+					                {{/benefitimage}}
+					                {{/usebenefitimage}}
+					                
+					                <div class="item-content text-center">
+					                    <h3 class="item-title">{{{benefittitle}}}</h3>
+					                    {{#benefitcontent}}
+					                    <div class="item-desc">{{{benefitcontent}}}</div>  
+					                    {{/benefitcontent}}
+					                </div><!--//content-->    
+							    </div><!--//item-inner-->           
+				            </div><!--/item-->
+				            {{/hasbenefit}}
+			            {{/benefits}}
+				    </div><!--//row-->
+			    </div><!--//container--> 
+			</div><!--//benefits-section-->
+			{{/usebenefits}}
+		</div><!--//cta-section-lower-->
+	</div><!--//container-fluid-->
+</div><!--//cta-section-->
+{{/hasctasection}}

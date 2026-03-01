@@ -1,0 +1,68 @@
+/*!
+ * Moodle Theme Edutor(https://elearning.3rdwavemedia.com)
+ * Version: v5.1
+ * Author: 3rd Wave Media
+ * Copyright @ 3rd Wave Media Ltd.
+ * License info: (https://elearning.3rdwavemedia.com/licenses)
+ */
+ 
+/*
+/* Edutor Custom Settings (defined in settings.php and lib.php) 
+*/
+
+
+$pagefont: "Mulish", "Helvetica Neue", Arial, sans-serif !default;
+$headingfont: "DM Sans", "Helvetica Neue", Arial, sans-serif !default;
+$fp-hero-height: 660px !default;
+$course-header-image-height: 360px !default;
+
+$slide1-cta-btn-color: $theme-color-secondary !default;
+$slide2-cta-btn-color: $theme-color-secondary !default;
+$slide3-cta-btn-color: $theme-color-secondary !default;
+$slide4-cta-btn-color: $theme-color-secondary !default;
+$slide5-cta-btn-color: $theme-color-secondary !default;
+$slide6-cta-btn-color: $theme-color-secondary !default;
+$slide7-cta-btn-color: $theme-color-secondary !default;
+$slide8-cta-btn-color: $theme-color-secondary !default;
+
+$theme-header-bg-color: $theme-text-color-primary !default;
+$theme-search-section-bg-color: $theme-color-primary !default;
+
+$tabbgcolor: $theme-color-primary !default;
+$tabbgcoloractive: $theme-color-secondary !default;
+
+$paneblockbgcolor: $theme-color-primary !default;
+$paneblocktextcolor: #fff !default;
+$paneblocklabelbgcolor: $theme-success-color !default;
+$ctasectionbgcolor: $theme-color-secondary !default;
+$faqsectionbgcolor: $theme-color-primary !default;
+$teacherssectionbgcolor: $theme-color-primary !default;
+$theme-footer-bg-color: $theme-text-color-primary !default;
+
+
+$catblockwidth_lg: 20% !default;
+$caticonwidthlimit: 40px !default;
+
+
+@import "theme/mixins";
+@import "theme/base";
+@import "theme/header";
+@import "theme/footer";
+@import "theme/frontpage";
+@import "theme/loginpage";
+@import "theme/modal";
+@import "theme/moodle";
+@import "theme/blocks";
+@import "theme/responsive";
+@import "theme/staticpage";
+@import "theme/courseformat";
+
+
+
+
+
+
+
+
+
+

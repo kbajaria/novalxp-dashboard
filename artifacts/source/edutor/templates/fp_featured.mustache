@@ -1,0 +1,119 @@
+{{#usefeaturedsection}}
+
+<div class="featured-section">
+
+	<div class="container-fluid">
+
+	    <div class="section-inner">
+		    
+		    {{#featuredsectiontitle}}
+		    <h2 class="section-title">{{{featuredsectiontitle}}}</h2>
+		    {{/featuredsectiontitle}}
+		    
+		    {{#featuredsectionintro}}
+		    <div class="section-intro">
+			    {{{featuredsectionintro}}}
+		    </div>
+		    {{/featuredsectionintro}}
+
+		    
+		    <div class="feature-tabs-wrapper">
+				<ul class="feature-tabs nav mx-lg-auto d-flex justify-content-center align-content-center" id="feature-tabs" role="tablist">   
+					{{#featuredpanes}}
+					{{#tabname}}
+				    <li class="feature-tab nav-item" role="presentation">
+				        <a class="feature-tab-link nav-link {{#paneactive}}active{{/paneactive}}" id="feature-tab-{{{panecount}}}" data-bs-toggle="tab" href="#feature-pane-{{{panecount}}}" role="tab" aria-controls="feature-pane-{{{panecount}}}" aria-selected="true">
+					        <span class="feature-tab-icon d-none d-md-inline-block"><i class="fa {{{tabicon}}}" aria-hidden="true"></i></span>
+					         <br class="d-none d-md-block">
+					        <span class="feature-tab-name">{{{tabname}}}</span>
+					    </a>
+				    </li>
+				    {{/tabname}}
+				    {{/featuredpanes}}
+				</ul>
+			</div><!--//feature-tabs-wrapper-->
+			
+
+           
+			<div class="feature-tab-content tab-content" id="feature-tab-content">
+				{{#featuredpanes}}
+			    <div class="feature-pane tab-pane fade {{#paneactive}}show active{{/paneactive}}" id="feature-pane-{{{panecount}}}" role="tabpanel" aria-labelledby="feature-tab-{{{panecount}}}">
+				    {{#panetitle}}
+				    <h3 class="feature-pane-heading">{{{panetitle}}}</h3>
+				    {{/panetitle}}
+				    
+				    {{#paneintro}}
+				    <div class="feature-pane-intro">
+					    {{{paneintro}}}
+				    </div>
+				    {{/paneintro}}
+				    
+				    {{#usepaneblocks}}
+				    <div class="featured-carousel">
+						   
+						      {{#paneblocks}}
+							   {{#blocktitle}}
+							    <div class="item item-{{{panecount}}}-{{{blockcount}}}">
+								    <div class="item-inner d-flex flex-column">
+									    {{#blockimage}}
+									    <div class="thumb-holder">
+										    <div class="thumb-holder-inner">
+										    </div><!--//thumb-holder-inner-->
+									    </div><!--//thumb-holder-->
+									    {{/blockimage}}
+									    <div class="item-content d-flex flex-column flex-grow-1 justify-content-between">
+										    <div class="item-content-wrapper">
+											    {{#blocktitle}}
+											    <h3 class="item-title">{{{blocktitle}}}</h3>
+											    {{/blocktitle}}
+											    {{#blockcontent}}
+											    <div class="item-desc">{{{blockcontent}}}</div>
+											    {{/blockcontent}}
+										    </div><!--//item-content-wrapper-->
+										    
+										    <div class="item-meta-wrapper">
+										    
+											    {{#blockprice}}
+											    <div class="item-price">
+												    {{{blockprice}}}
+											    </div>
+											    {{/blockprice}}
+											    
+											    {{#blocklabel}}
+											    <div class="item-label-holder">
+											        <span class="item-label ">{{{blocklabel}}}</span>
+											    </div>
+											    {{/blocklabel}}
+										    
+										    </div><!--//item-meta-wrapper-->
+										    
+										   
+									    </div><!--//item-content-->
+									    {{#blockurl}}
+									    <a class="item-link" href="{{{blockurl}}}" {{#urlopennew}}target="_blank"{{/urlopennew}}></a>
+									    {{/blockurl}}
+								    </div><!--//item-inner-->
+								    <div class="item-decor"></div>
+								    
+							    </div><!--//item-->	
+							    {{/blocktitle}}	
+							      
+						    {{/paneblocks}}
+						    		        
+					</div><!--//featured-carousel-->
+					{{/usepaneblocks}}
+			    </div><!--//feature-tab-content-->
+			    {{/featuredpanes}}
+			</div><!--//feature-tab-content-->
+			
+			
+			
+		    
+	    </div><!--//section-inner-->
+
+    </div><!--//container-fluid-->
+    
+</div><!--//featured-section-->
+
+
+{{/usefeaturedsection}}

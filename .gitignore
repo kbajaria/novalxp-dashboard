@@ -1,0 +1,5 @@
+# Sensitive/broad exports; review before commit
+artifacts/raw/mdl_config_plugins_dashboard_related.tsv
+
+# Upstream backup archives copied from dev theme source
+artifacts/source/edutor/*.tar.gz

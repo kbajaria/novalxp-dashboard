@@ -1,0 +1,9 @@
+{
+   "block_instance_id" : 91,
+   "format" : "1",
+   "region" : "content",
+   "subpagepattern" : "2",
+   "text" : "<p style=\"margin: 0 0 12px 0;\">Your learning home for onboarding, mandatory training, and skill building.</p>\r\n<div style=\"display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 10px 0;\"><a style=\"padding: 10px 14px; border-radius: 8px; border: 1px solid #5F71C2; background-color: #5F71C2; color: #ffffff; text-decoration: none; display: inline-block;\" href=\"/course/view.php?id=184\"> 🚀 Start onboarding </a> <a style=\"padding: 10px 14px; border-radius: 8px; border: 1px solid #5F71C2; background-color: #5F71C2; color: #ffffff; text-decoration: none; display: inline-block;\" href=\"/course/index.php\"> 🔎 Browse all courses </a> <a style=\"padding: 10px 14px; border-radius: 8px; border: 1px solid #5F71C2; background-color: #5F71C2; color: #ffffff; text-decoration: none; display: inline-block;\" href=\"/tag/index.php\"> 🏷 Explore by topic </a> <a style=\"padding: 10px 14px; border-radius: 8px; border: 1px solid #5F71C2; background-color: #5F71C2; color: #ffffff; text-decoration: none; display: inline-block;\" href=\"/user/profile.php\"> ⚙️ Update my profile </a></div>\r\n<p style=\"margin: 0;\">Need help? Contact <strong>Talent Management</strong> via Teams.</p>",
+   "title" : "Welcome to NovaLXP",
+   "weight" : 1
+}
