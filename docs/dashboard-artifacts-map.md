@@ -32,6 +32,15 @@
 - `artifacts/decoded/block_93.html`
   - Featured course HTML card.
 
+## Canonical managed spec
+
+- `spec/welcome/title.txt`
+- `spec/welcome/format.txt`
+- `spec/welcome/text.html`
+- Deployment/check scripts:
+  - `scripts/sync_welcome_block.sh`
+  - `scripts/check_welcome_drift.sh`
+
 ## Source code artifacts copied from dev
 
 - Theme:
@@ -50,4 +59,3 @@
 - Position overrides seen in `mdl_block_positions_my_index.tsv`:
   - block `91` at weight `-3`
   - block `93` at weight `0`
-

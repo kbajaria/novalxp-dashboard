@@ -7,6 +7,7 @@ Local starter project for a new GitHub repo that captures the **default Moodle d
 - `artifacts/raw/`: direct exports from the dev Moodle database and filesystem inventory.
 - `artifacts/decoded/`: decoded HTML block content from dashboard block definitions.
 - `artifacts/source/`: copied source code from dev Moodle theme/plugins relevant to dashboard behavior.
+- `spec/`: canonical source-of-truth content for managed dashboard elements.
 - `docs/`: mapping notes and extraction log.
 - `scripts/`: helper script to re-run extraction.
 
@@ -26,3 +27,17 @@ Local starter project for a new GitHub repo that captures the **default Moodle d
 - `artifacts/raw/mdl_config_plugins_dashboard_related.tsv` may include operational config you may not want public.
 
 See `docs/dashboard-artifacts-map.md` for exact files and IDs.
+
+## Canonical Welcome Block Workflow
+
+- Canonical files:
+  - `spec/welcome/title.txt`
+  - `spec/welcome/format.txt`
+  - `spec/welcome/text.html`
+- Drift check:
+  - `./scripts/sync_welcome_block.sh check <dev|test|prod>`
+  - `./scripts/check_welcome_drift.sh`
+- Deploy canonical block:
+  - `./scripts/sync_welcome_block.sh apply <dev|test|prod>`
+
+Full runbook: `docs/welcome-block-sync.md`.
