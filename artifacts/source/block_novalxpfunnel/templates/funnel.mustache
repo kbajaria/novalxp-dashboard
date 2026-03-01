@@ -1,0 +1,31 @@
+<div class="block-novalxpfunnel">
+  {{#empty}}
+    <div class="block-novalxpfunnel__empty">{{emptytext}}</div>
+  {{/empty}}
+  {{^empty}}
+    <div class="block-novalxpfunnel__row block-novalxpfunnel__row--enrolled">
+      <div class="block-novalxpfunnel__label">{{enrolledlabel}}</div>
+      <div class="block-novalxpfunnel__barwrap">
+        <div class="block-novalxpfunnel__bar" style="width:100%;">
+          <span>{{enrolled}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="block-novalxpfunnel__row block-novalxpfunnel__row--progress">
+      <div class="block-novalxpfunnel__label">{{inprogresslabel}}</div>
+      <div class="block-novalxpfunnel__barwrap">
+        <div class="block-novalxpfunnel__bar" style="width:{{inprogresspct}}%;">
+          <span>{{inprogress}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="block-novalxpfunnel__row block-novalxpfunnel__row--complete">
+      <div class="block-novalxpfunnel__label">{{completelabel}}</div>
+      <div class="block-novalxpfunnel__barwrap">
+        <div class="block-novalxpfunnel__bar" style="width:{{completepct}}%;">
+          <span>{{complete}}</span>
+        </div>
+      </div>
+    </div>
+  {{/empty}}
+</div>

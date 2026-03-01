@@ -1,0 +1,55 @@
+.block-novalxpfunnel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.25rem 0;
+}
+
+.block-novalxpfunnel__row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.block-novalxpfunnel__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #394b63;
+}
+
+.block-novalxpfunnel__barwrap {
+    width: 100%;
+    border-radius: 999px;
+    background: #edf2f9;
+    overflow: hidden;
+}
+
+.block-novalxpfunnel__bar {
+    min-width: 2.8rem;
+    height: 1.7rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 0.7rem;
+    color: #ffffff;
+    font-weight: 700;
+    transition: width 300ms ease;
+}
+
+.block-novalxpfunnel__row--enrolled .block-novalxpfunnel__bar {
+    background: linear-gradient(90deg, #2f62ff 0%, #4f7eff 100%);
+}
+
+.block-novalxpfunnel__row--progress .block-novalxpfunnel__bar {
+    background: linear-gradient(90deg, #ec8f00 0%, #f6b03b 100%);
+}
+
+.block-novalxpfunnel__row--complete .block-novalxpfunnel__bar {
+    background: linear-gradient(90deg, #1a9f65 0%, #32c17f 100%);
+}
+
+.block-novalxpfunnel__empty {
+    font-size: 0.9rem;
+    color: #5f6f84;
+}
