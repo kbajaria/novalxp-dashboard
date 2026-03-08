@@ -3664,7 +3664,5 @@ class core_renderer extends \theme_boost\output\core_renderer {
             return $this->image_url('noimg', 'theme')->out();
         }
     }
-   
-
 
 }

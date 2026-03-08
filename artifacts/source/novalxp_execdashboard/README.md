@@ -1,17 +1,27 @@
 # local_novalxp_execdashboard
 
-Moodle local plugin scaffold for a NovaLXP executive dashboard.
+Moodle local plugin for the NovaLXP KPI experience.
 
-## What this scaffold includes
+## Current features
 
 - a dedicated page at `/local/novalxp_execdashboard/index.php`
+- an admin navigation entry under Reports for permitted users
 - a custom capability: `local/novalxp_execdashboard:view`
-- a first-pass KPI summary derived from active enrolments and course completions
+- a `KPIs` top-nav item in the Edutor header for permitted users
+- KPI summary tiles derived from active enrolments and course completions
+- a rolling 7/30/90 day reporting window filter
+- a cohort filter for audience scoping
+- a course category filter for dashboard segmentation
+- a trend chart for enrolments and completions
+- a status model that splits not-started, in-progress, and complete
+- a course-level breakdown table for active enrolments and completions
 
 ## Current KPI tiles
 
 - Active learners
 - Active enrolments
+- Not started
+- In progress
 - Completed enrolments
 - Completion rate
 - New enrolments in the last 30 days
@@ -19,10 +29,10 @@ Moodle local plugin scaffold for a NovaLXP executive dashboard.
 
 ## Intended next steps
 
-1. Add navigation entry for permitted users.
-2. Add cohort, client, category, and date filters.
+1. Add client filters and category descendant rollups.
+2. Add exports if stakeholders need offline reporting.
 3. Split not-started from genuinely in-progress learners.
-4. Add trend series and drill-down tables.
+4. Add richer drill-down tables.
 5. Move heavier reporting logic to pre-aggregated tables if live queries become too expensive.
 
 ## Installation

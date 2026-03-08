@@ -45,6 +45,30 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 
+$execkpinavhtml = '';
+if (isloggedin() && !isguestuser()) {
+    $systemcontext = context_system::instance();
+    if (has_capability('local/novalxp_execdashboard:view', $systemcontext)) {
+        $kpiurl = new moodle_url('/local/novalxp_execdashboard/index.php');
+        $isactive = strpos($PAGE->url->out_as_local_url(false), '/local/novalxp_execdashboard/index.php') === 0;
+        $classes = 'nav-link';
+        $attrs = [
+            'class' => $classes,
+            'style' => $isactive ? 'color:#ffffff;' : 'color:rgba(255,255,255,0.85);',
+        ];
+        if ($isactive) {
+            $classes .= ' active';
+            $attrs['class'] = $classes;
+        }
+        $kpilink = html_writer::link($kpiurl, 'KPIs', $attrs);
+        $execkpinavhtml = html_writer::tag(
+            'ul',
+            html_writer::tag('li', $kpilink, ['class' => 'nav-item']),
+            ['class' => 'nav more-nav navbar-nav local-kpi-nav', 'style' => 'margin-left: 1.75rem;']
+        );
+    }
+}
+
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
@@ -64,6 +88,7 @@ $templatecontext = [
     'mobileprimarynav' => $primarymenu['mobileprimarynav'],
     'usermenu' => $primarymenu['user'],
     'langmenu' => $primarymenu['lang'],
+    'execkpinavhtml' => $execkpinavhtml,
 
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),

@@ -25,6 +25,36 @@ The current logic is implemented in:
 
 The default dashboard currently uses Moodle `my-index` blocks on shared dashboard subpages, with custom HTML blocks and the NovaLXP funnel block already placed on the default dashboard.
 
+## Current implementation status
+
+NovaLXP now also has a Moodle-native executive KPI page scaffolded and deployed in dev as:
+
+- `artifacts/source/novalxp_execdashboard/`
+- URL: `/local/novalxp_execdashboard/index.php`
+
+Implemented features currently include:
+
+- capability-gated access via `local/novalxp_execdashboard:view`
+- summary KPI tiles
+- cohort filter
+- course category filter
+- rolling `7 / 30 / 90` day reporting window
+- trend chart for enrolments and completions
+- course breakdown table
+- learner state split into:
+  - not started
+  - in progress
+  - complete
+
+The current header navigation in the Edutor theme also adds a `KPIs` top-nav item for users with the dashboard capability.
+
+The dev deployment currently grants access to:
+
+- `admin`
+- `demo.user001`
+
+using a dedicated system role for the demo user rather than broadening access for all logged-in users.
+
 ## Recommended KPI set
 
 The dashboard should separate KPIs into three tiers.
@@ -234,6 +264,8 @@ This gives NovaLXP a clean split:
 - learner dashboard on `my-index`
 - executive reporting on a separate, controlled page
 
+This is now the path NovaLXP is actively using in dev.
+
 ## Selected-user visibility in Moodle
 
 Yes, Moodle can show this content only to selected users.
@@ -257,6 +289,8 @@ Example access pattern:
 - executives see the executive dashboard
 - standard learners do not see it
 - client admins may see only their own client segment if scoped rules are added
+
+This is the mechanism now in use for the current dev implementation.
 
 ### Why not rely only on default dashboard placement
 
