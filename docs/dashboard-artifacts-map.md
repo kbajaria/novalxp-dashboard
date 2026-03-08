@@ -37,9 +37,23 @@
 - `spec/welcome/title.txt`
 - `spec/welcome/format.txt`
 - `spec/welcome/text.html`
+- `spec/dashboard-search/title.txt`
+- `spec/dashboard-search/format.txt`
+- `spec/dashboard-search/text.html`
+- `spec/featured-course/title.txt`
+- `spec/featured-course/format.txt`
+- `spec/featured-course/text.html`
 - Deployment/check scripts:
   - `scripts/sync_welcome_block.sh`
+  - `scripts/sync_dashboard_search_block.sh`
+  - `scripts/sync_featured_course_block.sh`
   - `scripts/check_welcome_drift.sh`
+
+## Dashboard styling override
+
+- `theme_edutor/scss` raw SCSS setting
+  - Holds the dashboard-only Tags pill styling override applied in each environment.
+  - Must be migrated separately from the HTML block specs.
 
 ## Source code artifacts copied from dev
 
@@ -54,8 +68,11 @@
 ## Current dashboard mapping observed
 
 - `mdl_block_instances` for `my-index` currently shows:
-  - `subpagepattern=2`: badges, tags, recentlyaccessedcourses, recentlyaccesseditems, html(91), html(93)
+  - `subpagepattern=2`: welcome HTML, search HTML, novalxpfunnel, featured HTML, tags, badges, recently accessed blocks
   - `subpagepattern=3`: myoverview
 - Position overrides seen in `mdl_block_positions_my_index.tsv`:
   - block `91` at weight `-3`
-  - block `93` at weight `0`
+  - search block at weight `-2`
+  - novalxpfunnel at weight `-1` where present
+  - featured block at weight `1` or `2` depending on environment baseline
+  - tags block after featured

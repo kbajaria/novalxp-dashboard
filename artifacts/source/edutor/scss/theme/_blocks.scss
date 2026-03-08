@@ -285,6 +285,25 @@ html {
 	}
 }
 
+#page-my-index #block-region-content .block_tags {
+	.tag_cloud {
+		a {
+			background: #5F71C2;
+			border: 1px solid #5F71C2;
+			color: #fff;
+			@include border-radius(999px);
+			padding: 0.45rem 0.95rem;
+			font-size: 0.82rem;
+			line-height: 1.15;
+			margin: 0 0.5rem 0.5rem 0;
+			&:hover {
+				background: darken(#5F71C2, 5%);
+				border-color: darken(#5F71C2, 5%);
+			}
+		}
+	}
+}
+
 /* Block - Advanced Notifications */
 #page-my-index #region-main #block-region-content .block.block_advnotifications {
 	@include box-shadow(none !important);
@@ -317,4 +336,3 @@ body .block.block_advnotifications .content .notification-block-wrapper .alert .
 	top: 0.25rem;
 	font-size: 1.5rem;
 }
-
