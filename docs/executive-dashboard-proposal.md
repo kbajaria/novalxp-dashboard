@@ -27,7 +27,7 @@ The default dashboard currently uses Moodle `my-index` blocks on shared dashboar
 
 ## Current implementation status
 
-NovaLXP now also has a Moodle-native executive KPI page scaffolded and deployed in dev as:
+NovaLXP now has a Moodle-native KPI page implemented as:
 
 - `artifacts/source/novalxp_execdashboard/`
 - URL: `/local/novalxp_execdashboard/index.php`
@@ -48,7 +48,28 @@ Implemented features currently include:
 
 The current header navigation in the Edutor theme also adds a `KPIs` top-nav item for users with the dashboard capability.
 
-The dev deployment currently grants access to:
+The KPI experience is now deployed in:
+
+- dev
+- test
+- production
+
+The current access model uses the `Executive Dashboard Viewer` system role plus the `local/novalxp_execdashboard:view` capability.
+
+Current rollout status:
+
+- dev
+  - `admin`
+  - `demo.user001`
+- test
+  - `admin`
+  - `demo.user001`
+- production
+  - `admin`
+  - `demo.user001`
+  - Richard Bolger (`user id 523`, username `bamboo_1287`, email `richard.bolger@finova.tech`)
+
+The original dev deployment granted access to:
 
 - `admin`
 - `demo.user001`
@@ -265,6 +286,7 @@ This gives NovaLXP a clean split:
 - executive reporting on a separate, controlled page
 
 This is now the path NovaLXP is actively using in dev.
+This is now the path NovaLXP is actively using across dev, test, and production.
 
 ## Selected-user visibility in Moodle
 

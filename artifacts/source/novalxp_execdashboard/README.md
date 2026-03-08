@@ -16,6 +16,20 @@ Moodle local plugin for the NovaLXP KPI experience.
 - a status model that splits not-started, in-progress, and complete
 - a course-level breakdown table for active enrolments and completions
 
+## Rollout status
+
+Deployed to:
+
+- dev
+- test
+- production
+
+Current permitted users by environment:
+
+- dev: `admin`, `demo.user001`
+- test: `admin`, `demo.user001`
+- production: `admin`, `demo.user001`, `bamboo_1287` (`richard.bolger@finova.tech`)
+
 ## Current KPI tiles
 
 - Active learners
