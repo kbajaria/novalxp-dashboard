@@ -49,6 +49,15 @@ $functions = array(
         'capabilities' => 'moodle/course:manageactivities,mod/quiz:addinstance',
         'ajax'         => false,
     ),
+
+    'local_novalxpapi_apply_quiz_completion_guardrails' => array(
+        'classname'    => 'local_novalxpapi\external',
+        'methodname'   => 'apply_quiz_completion_guardrails',
+        'description'  => 'Apply quiz-pass-based course completion guardrails for NovaLXP AI-generated courses.',
+        'type'         => 'write',
+        'capabilities' => 'moodle/course:update,moodle/course:manageactivities',
+        'ajax'         => false,
+    ),
 );
 
 $services = array(
@@ -60,6 +69,7 @@ $services = array(
             'local_novalxpapi_add_section',
             'local_novalxpapi_add_page',
             'local_novalxpapi_create_quiz',
+            'local_novalxpapi_apply_quiz_completion_guardrails',
         ),
         'enabled'         => 1,
         'restrictedusers' => 0,
@@ -67,4 +77,3 @@ $services = array(
         'uploadfiles'     => 0,
     ),
 );
-
