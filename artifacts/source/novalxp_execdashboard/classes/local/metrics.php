@@ -20,6 +20,21 @@ defined('MOODLE_INTERNAL') || die();
 
 class metrics {
     /**
+     * Read a float-like plugin config value.
+     *
+     * @param string $name Config key.
+     * @return float
+     */
+    protected static function config_float(string $name): float {
+        $value = get_config('local_novalxp_execdashboard', $name);
+        if ($value === false || $value === null || $value === '') {
+            return 0.0;
+        }
+
+        return (float)$value;
+    }
+
+    /**
      * Build shared joins and where fragments for dashboard filters.
      *
      * @param int $cohortid Optional cohort scope.
@@ -169,6 +184,131 @@ class metrics {
             'newenrolmentswindow' => $newenrolmentswindow,
             'completionswindow' => $completionswindow,
         ];
+    }
+
+    /**
+     * Return configured cost KPIs derived from summary metrics.
+     *
+     * Assumption: non-AI platform cost is fixed, while AI cost scales with adoption.
+     *
+     * @param array<string,int|float> $summary
+     * @return array<string,int|float|null>
+     */
+    public static function cost_summary(array $summary): array {
+        $platformcost = self::config_float('monthlyplatformcost');
+        $monthlyaicost = self::config_float('monthlyaicost');
+        $totalmonthlycost = $platformcost + $monthlyaicost;
+        $source = 'manual';
+        $messages = [get_string('costsource_manual', 'local_novalxp_execdashboard')];
+
+        if (aws_cost_client::enabled()) {
+            if (!aws_cost_client::has_credentials()) {
+                $messages[] = aws_cost_client::useec2role()
+                    ? get_string('costsource_awsimdsunavailable', 'local_novalxp_execdashboard')
+                    : get_string('costsource_awsmissingcredentials', 'local_novalxp_execdashboard');
+            } else {
+                $linkedaccount = aws_cost_client::linked_account();
+                $aiservices = aws_cost_client::ai_services();
+                $totallive = aws_cost_client::month_to_date_cost([], $linkedaccount);
+
+                if ($totallive['ok']) {
+                    $totalmonthlycost = (float)$totallive['amount'];
+                    $source = 'mixed';
+                    $messages = [get_string('costsource_awslive', 'local_novalxp_execdashboard')];
+
+                    if ($aiservices) {
+                        $ailive = aws_cost_client::month_to_date_cost($aiservices, $linkedaccount);
+                        if ($ailive['ok']) {
+                            $monthlyaicost = (float)$ailive['amount'];
+                            $platformcost = max(0.0, $totalmonthlycost - $monthlyaicost);
+                            $source = 'live';
+                            $messages[] = get_string('costsource_awsaifilter', 'local_novalxp_execdashboard');
+                        } else {
+                            $platformcost = max(0.0, $totalmonthlycost - $monthlyaicost);
+                            $messages[] = get_string('costsource_awsaifailed', 'local_novalxp_execdashboard') . ' ' . $ailive['error'];
+                        }
+                    } else {
+                        $platformcost = max(0.0, $totalmonthlycost - $monthlyaicost);
+                        $messages[] = get_string('costsource_awsaimissingfilter', 'local_novalxp_execdashboard');
+                    }
+                } else {
+                    $messages[] = get_string('costsource_awsfailed', 'local_novalxp_execdashboard') . ' ' . $totallive['error'];
+                }
+            }
+        }
+
+        $activelearners = (int)($summary['activelearners'] ?? 0);
+
+        return [
+            'monthlyplatformcost' => $platformcost,
+            'monthlyaicost' => $monthlyaicost,
+            'totalmonthlycost' => $totalmonthlycost,
+            'costperactivelearner' => $activelearners > 0 ? round($totalmonthlycost / $activelearners, 2) : null,
+            'aicostperactivelearner' => $activelearners > 0 ? round($monthlyaicost / $activelearners, 2) : null,
+            'aicostpercentoftotal' => $totalmonthlycost > 0 ? round(($monthlyaicost / $totalmonthlycost) * 100, 1) : null,
+            'forecastcurrentadoption' => $totalmonthlycost,
+            'forecastdoubledadoption' => $platformcost + ($monthlyaicost * 2),
+            'source' => $source,
+            'sourcenote' => implode(' ', $messages),
+        ];
+    }
+
+    /**
+     * Return lightweight recommendations based on the current cost mix.
+     *
+     * @param array<string,int|float|null|string> $costsummary
+     * @return array<int,array{title:string,body:string}>
+     */
+    public static function cost_recommendations(array $costsummary): array {
+        $recommendations = [];
+        $total = (float)($costsummary['totalmonthlycost'] ?? 0);
+        $ai = (float)($costsummary['monthlyaicost'] ?? 0);
+        $aishare = (float)($costsummary['aicostpercentoftotal'] ?? 0);
+        $doubled = (float)($costsummary['forecastdoubledadoption'] ?? 0);
+        $current = (float)($costsummary['forecastcurrentadoption'] ?? 0);
+        $delta = $doubled - $current;
+
+        if ($total > 0 && $aishare <= 5) {
+            $recommendations[] = [
+                'title' => get_string('recommendation_fixedcost_title', 'local_novalxp_execdashboard'),
+                'body' => get_string(
+                    'recommendation_fixedcost_body',
+                    'local_novalxp_execdashboard',
+                    format_float($aishare, 1, false) . '%'
+                ),
+            ];
+        }
+
+        if ($delta <= max(5.0, $total * 0.02)) {
+            $recommendations[] = [
+                'title' => get_string('recommendation_scaling_title', 'local_novalxp_execdashboard'),
+                'body' => get_string(
+                    'recommendation_scaling_body',
+                    'local_novalxp_execdashboard',
+                    '$' . format_float($delta, 2, false)
+                ),
+            ];
+        }
+
+        if ($ai > 0 && $aishare > 5) {
+            $recommendations[] = [
+                'title' => get_string('recommendation_ai_title', 'local_novalxp_execdashboard'),
+                'body' => get_string(
+                    'recommendation_ai_body',
+                    'local_novalxp_execdashboard',
+                    format_float($aishare, 1, false) . '%'
+                ),
+            ];
+        }
+
+        if (!$recommendations) {
+            $recommendations[] = [
+                'title' => get_string('recommendation_monitor_title', 'local_novalxp_execdashboard'),
+                'body' => get_string('recommendation_monitor_body', 'local_novalxp_execdashboard'),
+            ];
+        }
+
+        return array_slice($recommendations, 0, 2);
     }
 
     /**

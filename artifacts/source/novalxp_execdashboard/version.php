@@ -17,7 +17,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_novalxp_execdashboard';
-$plugin->version = 2026030800;
+$plugin->version = 2026031408;
 $plugin->requires = 2024100700; // Moodle 5.1.
 $plugin->maturity = MATURITY_ALPHA;
 $plugin->release = '0.1.0';

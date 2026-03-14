@@ -25,6 +25,50 @@ require_login();
 $systemcontext = context_system::instance();
 require_capability('local/novalxp_execdashboard:view', $systemcontext);
 
+/**
+ * Format a KPI currency value.
+ *
+ * @param float|int|null $value
+ * @return string
+ */
+function local_novalxp_execdashboard_format_currency($value): string {
+    if ($value === null) {
+        return get_string('notconfigured', 'local_novalxp_execdashboard');
+    }
+
+    return '$' . format_float((float)$value, 2, false);
+}
+
+/**
+ * Render a tile row.
+ *
+ * @param array<int,array{label:string,value:string,help?:string}> $tiles
+ * @return string
+ */
+function local_novalxp_execdashboard_render_tiles(array $tiles): string {
+    $rows = [];
+    foreach ($tiles as $tile) {
+        $help = trim((string)($tile['help'] ?? ''));
+        $value = html_writer::tag('div', s($tile['value']), ['class' => 'h2 mb-1']);
+        $labeltext = s($tile['label']);
+        if ($help !== '') {
+            $trigger = html_writer::tag('button', 'i', [
+                'type' => 'button',
+                'class' => 'local-novalxp-kpi-help__trigger',
+                'aria-label' => $tile['label'] . '. ' . $help,
+            ]);
+            $bubble = html_writer::span(s($help), 'local-novalxp-kpi-help__bubble');
+            $labeltext .= html_writer::span($trigger . $bubble, 'local-novalxp-kpi-help');
+        }
+        $label = html_writer::tag('div', $labeltext, ['class' => 'text-muted']);
+        $body = html_writer::div($value . $label, 'card-body');
+        $card = html_writer::div($body, 'card h-100');
+        $rows[] = html_writer::div($card, 'col-md-4 mb-3');
+    }
+
+    return html_writer::div(implode('', $rows), 'row');
+}
+
 $windowdays = optional_param('windowdays', 30, PARAM_INT);
 $cohortid = optional_param('cohortid', 0, PARAM_INT);
 $categoryid = optional_param('categoryid', 0, PARAM_INT);
@@ -54,9 +98,11 @@ $PAGE->set_title(get_string('title', 'local_novalxp_execdashboard'));
 $PAGE->set_heading(get_string('title', 'local_novalxp_execdashboard'));
 
 $summary = metrics::summary($windowdays, $cohortid, $categoryid);
+$costsummary = metrics::cost_summary($summary);
+$costrecommendations = metrics::cost_recommendations($costsummary);
 $courses = metrics::course_breakdown($windowdays, $cohortid, $categoryid);
 $trends = metrics::trend_series($windowdays, $cohortid, $categoryid);
-$tiles = [
+$summarytiles = [
     [
         'label' => get_string('tile_activelearners', 'local_novalxp_execdashboard'),
         'value' => format_float($summary['activelearners'], 0, false),
@@ -91,9 +137,103 @@ $tiles = [
     ],
 ];
 
+$costtiles = [
+    [
+        'label' => get_string('tile_totalmonthlycost', 'local_novalxp_execdashboard'),
+        'value' => local_novalxp_execdashboard_format_currency($costsummary['totalmonthlycost']),
+        'help' => get_string('tile_totalmonthlycost_help', 'local_novalxp_execdashboard'),
+    ],
+    [
+        'label' => get_string('tile_monthlyaicost', 'local_novalxp_execdashboard'),
+        'value' => local_novalxp_execdashboard_format_currency($costsummary['monthlyaicost']),
+        'help' => get_string('tile_monthlyaicost_help', 'local_novalxp_execdashboard'),
+    ],
+    [
+        'label' => get_string('tile_costperactivelearner', 'local_novalxp_execdashboard'),
+        'value' => local_novalxp_execdashboard_format_currency($costsummary['costperactivelearner']),
+        'help' => get_string('tile_costperactivelearner_help', 'local_novalxp_execdashboard'),
+    ],
+    [
+        'label' => get_string('tile_aicostperactivelearner', 'local_novalxp_execdashboard'),
+        'value' => local_novalxp_execdashboard_format_currency($costsummary['aicostperactivelearner']),
+        'help' => get_string('tile_aicostperactivelearner_help', 'local_novalxp_execdashboard'),
+    ],
+    [
+        'label' => get_string('tile_aicostpercentoftotal', 'local_novalxp_execdashboard'),
+        'value' => $costsummary['aicostpercentoftotal'] === null
+            ? get_string('notconfigured', 'local_novalxp_execdashboard')
+            : format_float($costsummary['aicostpercentoftotal'], 1, false) . '%',
+        'help' => get_string('tile_aicostpercentoftotal_help', 'local_novalxp_execdashboard'),
+    ],
+    [
+        'label' => get_string('tile_forecastcurrentadoption', 'local_novalxp_execdashboard'),
+        'value' => local_novalxp_execdashboard_format_currency($costsummary['forecastcurrentadoption']),
+        'help' => get_string('tile_forecastcurrentadoption_help', 'local_novalxp_execdashboard'),
+    ],
+    [
+        'label' => get_string('tile_forecastdoubledadoption', 'local_novalxp_execdashboard'),
+        'value' => local_novalxp_execdashboard_format_currency($costsummary['forecastdoubledadoption']),
+        'help' => get_string('tile_forecastdoubledadoption_help', 'local_novalxp_execdashboard'),
+    ],
+];
+
+$forecastdelta = null;
+if ($costsummary['forecastcurrentadoption'] !== null && $costsummary['forecastdoubledadoption'] !== null) {
+    $forecastdelta = (float)$costsummary['forecastdoubledadoption'] - (float)$costsummary['forecastcurrentadoption'];
+}
+
 echo $OUTPUT->header();
 echo $OUTPUT->heading(get_string('heading', 'local_novalxp_execdashboard'));
 echo html_writer::tag('p', get_string('intro', 'local_novalxp_execdashboard'), ['class' => 'text-muted']);
+echo html_writer::tag('style', '
+    .local-novalxp-kpi-help {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        margin-left: 0.35rem;
+    }
+    .local-novalxp-kpi-help__trigger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 999px;
+        border: 1px solid #98a2b3;
+        color: #475467;
+        font-size: 0.75rem;
+        font-weight: 700;
+        line-height: 1;
+        cursor: help;
+        background: #fff;
+    }
+    .local-novalxp-kpi-help__bubble {
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 0.5rem);
+        transform: translateX(-50%);
+        width: 18rem;
+        max-width: min(18rem, 80vw);
+        padding: 0.65rem 0.75rem;
+        border-radius: 0.5rem;
+        background: #1f2937;
+        color: #fff;
+        font-size: 0.8rem;
+        line-height: 1.4;
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.22);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 120ms ease;
+        z-index: 20;
+        text-align: left;
+    }
+    .local-novalxp-kpi-help:hover .local-novalxp-kpi-help__bubble,
+    .local-novalxp-kpi-help:focus-within .local-novalxp-kpi-help__bubble {
+        opacity: 1;
+        visibility: visible;
+    }
+');
 
 $windowoptions = [
     7 => get_string('window_7', 'local_novalxp_execdashboard'),
@@ -129,18 +269,39 @@ $filtercontrols .= html_writer::empty_tag('input', [
 ]);
 $filterform = html_writer::tag('form', $filtercontrols, ['method' => 'get', 'action' => $baseurl->out(false), 'class' => 'form-inline mb-4']);
 
-$rows = [];
-foreach ($tiles as $tile) {
-    $value = html_writer::tag('div', s($tile['value']), ['class' => 'h2 mb-1']);
-    $label = html_writer::tag('div', s($tile['label']), ['class' => 'text-muted']);
-    $body = html_writer::div($value . $label, 'card-body');
-    $card = html_writer::div($body, 'card h-100');
-    $rows[] = html_writer::div($card, 'col-md-4 mb-3');
-}
-
 echo html_writer::start_div('container-fluid px-0');
 echo $filterform;
-echo html_writer::div(implode('', $rows), 'row');
+echo $OUTPUT->heading(get_string('section_costkpis', 'local_novalxp_execdashboard'), 3);
+echo local_novalxp_execdashboard_render_tiles($costtiles);
+echo html_writer::tag(
+    'p',
+    get_string('costassumptionnote', 'local_novalxp_execdashboard'),
+    ['class' => 'text-muted mb-4']
+);
+if ($forecastdelta !== null) {
+    echo html_writer::tag(
+        'p',
+        get_string('costforecastnote', 'local_novalxp_execdashboard', local_novalxp_execdashboard_format_currency($forecastdelta)),
+        ['class' => 'text-muted mb-2']
+    );
+}
+echo html_writer::tag(
+    'p',
+    s((string)$costsummary['sourcenote']),
+    ['class' => 'text-muted mb-4']
+);
+echo $OUTPUT->heading(get_string('section_costrecommendations', 'local_novalxp_execdashboard'), 4);
+if ($costrecommendations) {
+    $items = [];
+    foreach ($costrecommendations as $recommendation) {
+        $title = html_writer::tag('strong', s($recommendation['title']));
+        $body = html_writer::span(' ' . s($recommendation['body']));
+        $items[] = html_writer::tag('li', $title . $body);
+    }
+    echo html_writer::tag('ul', implode('', $items), ['class' => 'mb-4']);
+}
+echo $OUTPUT->heading(get_string('section_summarykpis', 'local_novalxp_execdashboard'), 3);
+echo local_novalxp_execdashboard_render_tiles($summarytiles);
 
 echo $OUTPUT->heading(get_string('section_trends', 'local_novalxp_execdashboard'), 3);
 if ($trends) {
