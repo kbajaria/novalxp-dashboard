@@ -49,10 +49,26 @@
   - `scripts/sync_featured_course_block.sh`
   - `scripts/check_welcome_drift.sh`
 
+## Front-page featured carousel inputs
+
+- Front-page Featured carousel content is not managed by the dashboard HTML block specs.
+- Primary source:
+  - `theme_edutor` plugin settings in `mdl_config_plugins`
+  - Keys follow the pattern `pane1blockN(title|content|url|image|label|price)`
+- Theme code path:
+  - `artifacts/source/edutor/classes/output/core_renderer.php`
+  - `artifacts/source/edutor/templates/fp_featured.mustache`
+  - `artifacts/source/edutor/lib.php`
+- Important caveat:
+  - `theme_edutor/scss` may contain raw SCSS overrides for `.featured-carousel .item-1-N .thumb-holder-inner`.
+  - On dev, the `NOVALXP_PANE1_IMAGE_FIX` block can override pane image settings with `!important` rules.
+  - When carousel images appear wrong even though `pane1blockNimage` looks correct in the admin UI, inspect raw SCSS before changing stored files again.
+
 ## Dashboard styling override
 
 - `theme_edutor/scss` raw SCSS setting
   - Holds the dashboard-only Tags pill styling override applied in each environment.
+  - Also may contain front-page Featured carousel image overrides.
   - Must be migrated separately from the HTML block specs.
 
 ## Source code artifacts copied from dev
@@ -76,3 +92,10 @@
   - novalxpfunnel at weight `-1` where present
   - featured block at weight `1` or `2` depending on environment baseline
   - tags block after featured
+
+## Incident notes
+
+- March 16, 2026:
+  - Dashboard Featured content was updated to a four-course version via the managed HTML block spec.
+  - Home-page carousel images initially appeared unchanged because raw SCSS in `theme_edutor/scss` still hardcoded `Risk_Compliance.png` for `item-1-4` and `item-1-5`.
+  - RCA: `docs/frontpage-featured-carousel-rca-2026-03-16.md`

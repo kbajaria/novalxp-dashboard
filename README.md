@@ -21,6 +21,17 @@ Local starter project for a new GitHub repo that captures the **default Moodle d
   - `block instance 91` (`title: Welcome to NovaLXP`)
   - `block instance 93` (featured course card)
 
+## Front Page Featured Carousel
+
+- The Moodle home page Featured carousel is driven by `theme_edutor` plugin settings, not by course cards or the dashboard HTML block specs.
+- Pane 1 carousel copy lives in `theme_edutor` config keys such as:
+  - `pane1block4title`
+  - `pane1block4content`
+  - `pane1block4url`
+  - `pane1block4image`
+- Carousel images are file settings served through `theme_edutor` stored-file URLs.
+- Dev currently also has a raw SCSS override block in `theme_edutor/scss` named `NOVALXP_PANE1_IMAGE_FIX`. That override can supersede the file settings with `!important` background-image rules and must be checked whenever carousel images do not match the pane config.
+
 ## Notes before publishing to GitHub
 
 - Review and redact sensitive values before pushing.
@@ -41,3 +52,5 @@ See `docs/dashboard-artifacts-map.md` for exact files and IDs.
   - `./scripts/sync_welcome_block.sh apply <dev|test|prod>`
 
 Full runbook: `docs/welcome-block-sync.md`.
+
+For the March 16, 2026 front-page carousel incident and resolution, see `docs/frontpage-featured-carousel-rca-2026-03-16.md`.
