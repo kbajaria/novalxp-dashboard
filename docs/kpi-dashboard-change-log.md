@@ -6,10 +6,59 @@ Each entry covers: what changed, why, which file(s), and how to deploy to dev fo
 
 ---
 
+## Change 3: Chart polish — filter zero rows, integer funnel axis
+
+**Date:** 2026-03-22
+**Status:** Live on dev
+
+### What changed
+
+1. **Top 10 courses by enrolment chart** — courses with zero active enrolments are now excluded from the chart.
+2. **Completion rate by course chart** — courses with a 0% completion rate are now excluded from the chart.
+3. **Engagement funnel** — x-axis forced to whole-number (integer) steps. Moodle's Chart.js was previously rendering fractional tick marks (e.g. 0.5, 1.5) when counts were small integers.
+
+### Why
+
+Zero-value rows cluttered the charts with uninformative bars. The fractional axis on the funnel was misleading — learner counts are always whole numbers.
+
+### Files changed
+
+- `artifacts/source/novalxp_execdashboard/index.php` — chart data filtering and axis configuration only
+
+### How to deploy to dev for testing
+
+```bash
+aws sso login --profile finova-sso
+
+scp artifacts/source/novalxp_execdashboard/index.php \
+    dev-moodle-ec2:/home/ec2-user/index.php
+
+ssh dev-moodle-ec2 "sudo cp /home/ec2-user/index.php /var/www/moodle/public/local/novalxp_execdashboard/index.php && \
+  sudo chown apache:apache /var/www/moodle/public/local/novalxp_execdashboard/index.php && \
+  sudo php /var/www/moodle/admin/cli/purge_caches.php"
+```
+
+### How to verify
+
+1. Navigate to the KPI dashboard on dev.
+2. Confirm the top-10 enrolments chart shows no bars with a zero value.
+3. Confirm the completion rate chart shows no bars with a 0% value.
+4. Confirm the engagement funnel x-axis shows only whole numbers (0, 1, 2, … not 0.5, 1.5, …).
+
+### Rollback
+
+```bash
+git checkout HEAD~1 -- artifacts/source/novalxp_execdashboard/index.php
+```
+
+Then redeploy as above.
+
+---
+
 ## Change 2: KPI dashboard redesign — all-time section, top-10 chart, simplified funnel
 
 **Date:** 2026-03-22
-**Status:** Ready for dev testing
+**Status:** Live on dev
 
 ### What changed
 
@@ -93,7 +142,7 @@ Then redeploy using the same steps above.
 ## Change 1: Move AWS cost metrics to bottom of dashboard
 
 **Date:** 2026-03-22
-**Status:** Ready for dev testing
+**Status:** Live on dev
 
 ### What changed
 
@@ -128,15 +177,14 @@ Summary learning KPIs (active learners, enrolments, completion rate) are the pri
 No Moodle upgrade is required. This is a PHP output reorder only.
 
 ```bash
-# Authenticate
 aws sso login --profile finova-sso
 
-# Copy the updated file to dev
 scp artifacts/source/novalxp_execdashboard/index.php \
-    dev-moodle-ec2:/var/www/moodle/public/local/novalxp_execdashboard/index.php
+    dev-moodle-ec2:/home/ec2-user/index.php
 
-# Purge Moodle caches
-ssh dev-moodle-ec2 "sudo -u apache php /var/www/moodle/admin/cli/purge_caches.php"
+ssh dev-moodle-ec2 "sudo cp /home/ec2-user/index.php /var/www/moodle/public/local/novalxp_execdashboard/index.php && \
+  sudo chown apache:apache /var/www/moodle/public/local/novalxp_execdashboard/index.php && \
+  sudo php /var/www/moodle/admin/cli/purge_caches.php"
 ```
 
 ### How to verify
@@ -157,9 +205,9 @@ ssh dev-moodle-ec2 "sudo -u apache php /var/www/moodle/admin/cli/purge_caches.ph
 To revert, restore the previous version from git:
 
 ```bash
-git checkout HEAD -- artifacts/source/novalxp_execdashboard/index.php
+git checkout HEAD~1 -- artifacts/source/novalxp_execdashboard/index.php
 ```
 
-Then redeploy using the same `scp` + cache purge steps above.
+Then redeploy using the same steps above.
 
 ---
