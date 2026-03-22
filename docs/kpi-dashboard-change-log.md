@@ -44,12 +44,17 @@ scp artifacts/source/novalxp_execdashboard/index.php \
     dev-moodle-ec2:/home/ec2-user/index.php
 scp artifacts/source/novalxp_execdashboard/classes/local/metrics.php \
     dev-moodle-ec2:/home/ec2-user/metrics.php
+scp artifacts/source/novalxp_execdashboard/lang/en/local_novalxp_execdashboard.php \
+    dev-moodle-ec2:/home/ec2-user/local_novalxp_execdashboard.php
 
 # Install and purge caches
 ssh dev-moodle-ec2 "sudo cp /home/ec2-user/index.php /var/www/moodle/public/local/novalxp_execdashboard/index.php && \
   sudo cp /home/ec2-user/metrics.php /var/www/moodle/public/local/novalxp_execdashboard/classes/local/metrics.php && \
-  sudo chown apache:apache /var/www/moodle/public/local/novalxp_execdashboard/index.php \
-    /var/www/moodle/public/local/novalxp_execdashboard/classes/local/metrics.php && \
+  sudo cp /home/ec2-user/local_novalxp_execdashboard.php /var/www/moodle/public/local/novalxp_execdashboard/lang/en/local_novalxp_execdashboard.php && \
+  sudo chown apache:apache \
+    /var/www/moodle/public/local/novalxp_execdashboard/index.php \
+    /var/www/moodle/public/local/novalxp_execdashboard/classes/local/metrics.php \
+    /var/www/moodle/public/local/novalxp_execdashboard/lang/en/local_novalxp_execdashboard.php && \
   sudo php /var/www/moodle/admin/cli/purge_caches.php"
 ```
 
