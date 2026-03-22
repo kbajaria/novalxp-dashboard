@@ -12,7 +12,7 @@ Used to generate the weekly engineering report. Each entry should be added at th
 ## 2026-03-22 — [Feature] Popular courses block and bot catalog data
 
 **Component:** `block_novalxppopular`, `local_novalxpbot` payload builder
-**Status:** ongoing (implementation complete, deployment pending)
+**Status:** released (dev, test, production)
 
 ### What shipped
 - New Moodle block `block_novalxppopular` added to the learner dashboard (`/my`). Shows the top 5 courses the learner is not yet enrolled in, ranked by a weighted popularity score: `(completions × 2) + (enrolments × 1)`.
