@@ -319,7 +319,7 @@ if ($trends) {
 }
 
 echo $OUTPUT->heading(get_string('section_topenrolmentschart', 'local_novalxp_execdashboard'), 3);
-$topenrolcourses = array_slice($courses, 0, 10);
+$topenrolcourses = array_values(array_filter(array_slice($courses, 0, 10), fn($c) => $c['activeenrolments'] > 0));
 if ($topenrolcourses) {
     $topenrolchart = new chart_bar();
     $topenrolchart->set_horizontal(true);
@@ -341,6 +341,7 @@ if ($courses) {
     $chartcourses = $windowdays > 0
         ? array_values(array_filter($courses, fn($c) => $c['newenrolmentswindow'] > 0 || $c['completionswindow'] > 0))
         : $courses;
+    $chartcourses = array_values(array_filter($chartcourses, fn($c) => $c['completionrate'] > 0));
     usort($chartcourses, function ($a, $b) {
         return $b['completionrate'] <=> $a['completionrate'];
     });
@@ -382,6 +383,7 @@ $funnelchart->add_series(
     )
 );
 $funnelchart->set_title(get_string('section_engagementfunnel', 'local_novalxp_execdashboard'));
+$funnelchart->get_xaxis(0, true)->set_stepsize(1);
 echo $OUTPUT->render($funnelchart);
 
 echo $OUTPUT->heading(get_string('section_courses', 'local_novalxp_execdashboard'), 3);
