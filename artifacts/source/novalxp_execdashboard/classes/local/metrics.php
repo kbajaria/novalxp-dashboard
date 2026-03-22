@@ -562,7 +562,7 @@ class metrics {
                    )
                    {$where}";
 
-        $records = $DB->get_records_sql($sql, $params);
+        $records = $DB->get_recordset_sql($sql, $params);
         $bucketdays = $windowdays === 0 ? 30 : ($windowdays > 30 ? 7 : 1);
         $series = [];
 
@@ -595,6 +595,7 @@ class metrics {
                 }
             }
         }
+        $records->close();
 
         return array_values($series);
     }
