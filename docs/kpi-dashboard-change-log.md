@@ -6,6 +6,85 @@ Each entry covers: what changed, why, which file(s), and how to deploy to dev fo
 
 ---
 
+## Change 2: KPI dashboard redesign — all-time section, top-10 chart, simplified funnel
+
+**Date:** 2026-03-22
+**Status:** Ready for dev testing
+
+### What changed
+
+1. **All-time overview section** added at the very top of the dashboard, above the filter controls. Shows three tiles that never change with the selectors: Total users in system, Learners ever enrolled, Total course completions.
+
+2. **Window selector** — replaced "All time" (0 days) with "Last year" (365 days). The allowed windows are now 7, 30, 90, 365 days.
+
+3. **Top 10 courses by enrolment** chart added above the completion rate chart. Shows a horizontal bar chart of the top 10 courses by active enrolments, filtered by the current selectors.
+
+4. **Engagement funnel** simplified from 5 bars to 3: New enrolments in period, Started learning, Completions. Potential users and Ever enrolled removed (those concepts now live in the all-time tiles).
+
+### Why
+
+Separating static all-time KPIs from window-filtered metrics makes the dashboard clearer — users can see the overall picture at a glance before drilling into a time window. The top-10 enrolments chart adds a quick-hit view of course popularity. The funnel is cleaner now that "ever enrolled" is surfaced as a dedicated tile.
+
+### Files changed
+
+- `artifacts/source/novalxp_execdashboard/index.php` — all output changes
+- `artifacts/source/novalxp_execdashboard/classes/local/metrics.php` — added `alltime_summary()`, simplified `funnel_series()`
+- `artifacts/source/novalxp_execdashboard/lang/en/local_novalxp_execdashboard.php` — added new strings, changed `window_0` → `window_365`
+
+### How to deploy to dev for testing
+
+No Moodle upgrade is required.
+
+```bash
+# Authenticate
+aws sso login --profile finova-sso
+
+# Copy the updated files to dev
+scp artifacts/source/novalxp_execdashboard/index.php \
+    dev-moodle-ec2:/home/ec2-user/index.php
+scp artifacts/source/novalxp_execdashboard/classes/local/metrics.php \
+    dev-moodle-ec2:/home/ec2-user/metrics.php
+
+# Install and purge caches
+ssh dev-moodle-ec2 "sudo cp /home/ec2-user/index.php /var/www/moodle/public/local/novalxp_execdashboard/index.php && \
+  sudo cp /home/ec2-user/metrics.php /var/www/moodle/public/local/novalxp_execdashboard/classes/local/metrics.php && \
+  sudo chown apache:apache /var/www/moodle/public/local/novalxp_execdashboard/index.php \
+    /var/www/moodle/public/local/novalxp_execdashboard/classes/local/metrics.php && \
+  sudo php /var/www/moodle/admin/cli/purge_caches.php"
+```
+
+### How to verify
+
+1. Log in to `https://dev.novalxp.co.uk` as `admin` or `demo.user001`.
+2. Navigate to the KPI dashboard (`/local/novalxp_execdashboard/index.php`).
+3. Confirm page order:
+   - **All-time overview** tiles (Total users, Learners ever enrolled, Total completions) — static, above filters
+   - `<hr>` separator
+   - Filter controls (Category, Cohort, Reporting window)
+   - Learner KPI tiles
+   - Trend series chart
+   - **Top 10 courses by enrolment** chart
+   - Completion rate by course chart
+   - Engagement funnel (3 bars: New enrolments, Started, Completions)
+   - Course breakdown table
+   - Cost KPIs and recommendations
+4. Confirm window selector shows: Last 7 days, Last 30 days, Last 90 days, Last year (no "All time").
+5. Confirm the all-time tiles do not change when you change the window selector.
+6. Confirm the top-10 enrolments chart updates with the selectors.
+7. Confirm the engagement funnel shows 3 bars only.
+
+### Rollback
+
+```bash
+git checkout HEAD~1 -- artifacts/source/novalxp_execdashboard/index.php \
+  artifacts/source/novalxp_execdashboard/classes/local/metrics.php \
+  artifacts/source/novalxp_execdashboard/lang/en/local_novalxp_execdashboard.php
+```
+
+Then redeploy using the same steps above.
+
+---
+
 ## Change 1: Move AWS cost metrics to bottom of dashboard
 
 **Date:** 2026-03-22
