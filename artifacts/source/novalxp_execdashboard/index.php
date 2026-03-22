@@ -271,35 +271,6 @@ $filterform = html_writer::tag('form', $filtercontrols, ['method' => 'get', 'act
 
 echo html_writer::start_div('container-fluid px-0');
 echo $filterform;
-echo $OUTPUT->heading(get_string('section_costkpis', 'local_novalxp_execdashboard'), 3);
-echo local_novalxp_execdashboard_render_tiles($costtiles);
-echo html_writer::tag(
-    'p',
-    get_string('costassumptionnote', 'local_novalxp_execdashboard'),
-    ['class' => 'text-muted mb-4']
-);
-if ($forecastdelta !== null) {
-    echo html_writer::tag(
-        'p',
-        get_string('costforecastnote', 'local_novalxp_execdashboard', local_novalxp_execdashboard_format_currency($forecastdelta)),
-        ['class' => 'text-muted mb-2']
-    );
-}
-echo html_writer::tag(
-    'p',
-    s((string)$costsummary['sourcenote']),
-    ['class' => 'text-muted mb-4']
-);
-echo $OUTPUT->heading(get_string('section_costrecommendations', 'local_novalxp_execdashboard'), 4);
-if ($costrecommendations) {
-    $items = [];
-    foreach ($costrecommendations as $recommendation) {
-        $title = html_writer::tag('strong', s($recommendation['title']));
-        $body = html_writer::span(' ' . s($recommendation['body']));
-        $items[] = html_writer::tag('li', $title . $body);
-    }
-    echo html_writer::tag('ul', implode('', $items), ['class' => 'mb-4']);
-}
 echo $OUTPUT->heading(get_string('section_summarykpis', 'local_novalxp_execdashboard'), 3);
 echo local_novalxp_execdashboard_render_tiles($summarytiles);
 
@@ -356,6 +327,37 @@ if ($courses) {
     echo html_writer::table($table);
 } else {
     echo $OUTPUT->notification(get_string('empty_courses', 'local_novalxp_execdashboard'), 'info');
+}
+
+echo html_writer::div('', 'mt-5');
+echo $OUTPUT->heading(get_string('section_costkpis', 'local_novalxp_execdashboard'), 3);
+echo local_novalxp_execdashboard_render_tiles($costtiles);
+echo html_writer::tag(
+    'p',
+    get_string('costassumptionnote', 'local_novalxp_execdashboard'),
+    ['class' => 'text-muted mb-4']
+);
+if ($forecastdelta !== null) {
+    echo html_writer::tag(
+        'p',
+        get_string('costforecastnote', 'local_novalxp_execdashboard', local_novalxp_execdashboard_format_currency($forecastdelta)),
+        ['class' => 'text-muted mb-2']
+    );
+}
+echo html_writer::tag(
+    'p',
+    s((string)$costsummary['sourcenote']),
+    ['class' => 'text-muted mb-4']
+);
+echo $OUTPUT->heading(get_string('section_costrecommendations', 'local_novalxp_execdashboard'), 4);
+if ($costrecommendations) {
+    $items = [];
+    foreach ($costrecommendations as $recommendation) {
+        $title = html_writer::tag('strong', s($recommendation['title']));
+        $body = html_writer::span(' ' . s($recommendation['body']));
+        $items[] = html_writer::tag('li', $title . $body);
+    }
+    echo html_writer::tag('ul', implode('', $items), ['class' => 'mb-4']);
 }
 echo html_writer::end_div();
 
