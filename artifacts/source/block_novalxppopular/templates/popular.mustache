@@ -1,0 +1,15 @@
+<div class="block-novalxppopular">
+  {{#empty}}
+    <div class="block-novalxppopular__empty">{{emptytext}}</div>
+  {{/empty}}
+  {{^empty}}
+    <ol class="block-novalxppopular__list">
+      {{#courses}}
+        <li class="block-novalxppopular__item">
+          <a class="block-novalxppopular__link" href="{{courseurl}}">{{coursename}}</a>
+          <span class="block-novalxppopular__meta">{{completions}} completions · {{enrolments}} enrolled</span>
+        </li>
+      {{/courses}}
+    </ol>
+  {{/empty}}
+</div>

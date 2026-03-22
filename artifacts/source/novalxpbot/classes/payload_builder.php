@@ -3,6 +3,8 @@ namespace local_novalxpbot;
 
 defined('MOODLE_INTERNAL') || die();
 
+use block_novalxppopular\local\metrics as popular_metrics;
+
 /**
  * Builds /v1/chat payloads using Moodle context.
  */
@@ -33,6 +35,11 @@ class payload_builder {
                 'section_title' => '',
                 'page_type' => (string)$PAGE->pagetype,
                 'current_url' => $PAGE->url->out(false),
+                'catalog' => [
+                    'popular_courses' => class_exists('\block_novalxppopular\local\metrics')
+                        ? popular_metrics::top_global(10)
+                        : [],
+                ],
             ],
             'query' => [
                 'text' => $question,

@@ -9,6 +9,22 @@ Used to generate the weekly engineering report. Each entry should be added at th
 
 ---
 
+## 2026-03-22 — [Feature] Popular courses block and bot catalog data
+
+**Component:** `block_novalxppopular`, `local_novalxpbot` payload builder
+**Status:** ongoing (implementation complete, deployment pending)
+
+### What shipped
+- New Moodle block `block_novalxppopular` added to the learner dashboard (`/my`). Shows the top 5 courses the learner is not yet enrolled in, ranked by a weighted popularity score: `(completions × 2) + (enrolments × 1)`.
+- Learner dashboard block links directly to each course and shows completion and enrolment counts.
+- Extended `local_novalxpbot` `payload_builder.php` to include `context.catalog.popular_courses` in every bot request — top 10 globally popular courses (no user filter) — so the bot can answer "what should I take next?" questions with data.
+
+### Files
+- `artifacts/source/block_novalxppopular/` — new block (version.php, db/access.php, lang, classes, templates, styles.css)
+- `artifacts/source/novalxpbot/classes/payload_builder.php` — added `catalog.popular_courses`
+
+---
+
 ## 2026-03-22 — [Investigation] Learner funnel chart not updating after course completion
 
 **Component:** `block_novalxpfunnel` (learner dashboard)
