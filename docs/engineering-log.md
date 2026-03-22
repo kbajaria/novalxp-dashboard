@@ -46,7 +46,7 @@ Not a bug. Moodle course completion is asynchronous by design: when a learner me
 ## 2026-03-22 — [Bug] Trend series duplicate-key error on test environment
 
 **Component:** `local_novalxp_execdashboard` — `metrics.php` `trend_series()`
-**Status:** released (dev and test)
+**Status:** released (dev, test, production)
 
 ### Report
 Trend chart rendered incorrectly on test and emitted "Duplicate value found in column 'uecreated'" warnings. The chart worked on dev where data volume is lower.
@@ -64,7 +64,7 @@ Replaced `get_records_sql()` with `get_recordset_sql()` (+ `$records->close()`) 
 ## 2026-03-22 — [Feature] KPI dashboard redesign — all-time tiles, top-10 chart, simplified funnel
 
 **Component:** `local_novalxp_execdashboard`
-**Status:** released (dev and test)
+**Status:** released (dev, test, production)
 
 ### What shipped
 - **All-time overview section** added above the filter controls: three static tiles (Total users, Learners ever enrolled, Total course completions) that do not change with selector state.
@@ -79,7 +79,7 @@ Replaced `get_records_sql()` with `get_recordset_sql()` (+ `$records->close()`) 
 ## 2026-03-22 — [Bug] Charts showed zero-value bars; engagement funnel had fractional axis ticks
 
 **Component:** `local_novalxp_execdashboard` — `index.php`
-**Status:** released (dev and test)
+**Status:** released (dev, test, production)
 
 ### Report
 Top-10 enrolments chart and completion rate chart included bars with zero values. Engagement funnel x-axis showed fractional tick marks (0.5, 1.5, etc.) when learner counts were small integers.
@@ -95,7 +95,7 @@ Top-10 enrolments chart and completion rate chart included bars with zero values
 ## 2026-03-22 — [Chore] Moved AWS cost metrics to bottom of KPI dashboard
 
 **Component:** `local_novalxp_execdashboard` — `index.php`
-**Status:** released (dev)
+**Status:** released (dev, test, production)
 
 ### What changed
 Reordered dashboard sections so AWS cost KPIs and recommendations appear at the bottom rather than near the top. Summary learning KPIs (active learners, enrolments, completion rate) are now the first thing visible after the filter controls.
