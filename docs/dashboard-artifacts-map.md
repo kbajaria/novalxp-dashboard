@@ -63,6 +63,8 @@
   - `theme_edutor/scss` may contain raw SCSS overrides for `.featured-carousel .item-1-N .thumb-holder-inner`.
   - On dev, the `NOVALXP_PANE1_IMAGE_FIX` block can override pane image settings with `!important` rules.
   - When carousel images appear wrong even though `pane1blockNimage` looks correct in the admin UI, inspect raw SCSS before changing stored files again.
+  - These copied Edutor artifacts may also be missing other required NovaLXP functional patches.
+  - In particular, do not assume `artifacts/source/edutor/` contains the NovaLXP feedback pane 2 integration unless it has been explicitly verified.
 
 ## Dashboard styling override
 
@@ -99,3 +101,7 @@
   - Dashboard Featured content was updated to a four-course version via the managed HTML block spec.
   - Home-page carousel images initially appeared unchanged because raw SCSS in `theme_edutor/scss` still hardcoded `Risk_Compliance.png` for `item-1-4` and `item-1-5`.
   - RCA: `docs/frontpage-featured-carousel-rca-2026-03-16.md`
+- March 19, 2026:
+  - Separate RCA found that dev feedback rendering depended on an Edutor patch that was missing from inspected copied/exported theme artifacts.
+  - Treat Edutor copies in this repo as investigative artifacts, not automatically safe promotion baselines.
+  - See `docs/edutor-artifact-guardrails.md`
