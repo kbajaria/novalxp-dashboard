@@ -16,6 +16,7 @@
 
 require(__DIR__ . '/../../config.php');
 
+use core\chart_bar;
 use core\chart_line;
 use core\chart_series;
 use local_novalxp_execdashboard\local\metrics;
@@ -72,7 +73,7 @@ function local_novalxp_execdashboard_render_tiles(array $tiles): string {
 $windowdays = optional_param('windowdays', 30, PARAM_INT);
 $cohortid = optional_param('cohortid', 0, PARAM_INT);
 $categoryid = optional_param('categoryid', 0, PARAM_INT);
-$allowedwindows = [7, 30, 90];
+$allowedwindows = [7, 30, 90, 365];
 if (!in_array($windowdays, $allowedwindows, true)) {
     $windowdays = 30;
 }
@@ -97,11 +98,13 @@ $PAGE->set_pagelayout('report');
 $PAGE->set_title(get_string('title', 'local_novalxp_execdashboard'));
 $PAGE->set_heading(get_string('title', 'local_novalxp_execdashboard'));
 
+$alltime = metrics::alltime_summary();
 $summary = metrics::summary($windowdays, $cohortid, $categoryid);
 $costsummary = metrics::cost_summary($summary);
 $costrecommendations = metrics::cost_recommendations($costsummary);
 $courses = metrics::course_breakdown($windowdays, $cohortid, $categoryid);
 $trends = metrics::trend_series($windowdays, $cohortid, $categoryid);
+$funnel = metrics::funnel_series($cohortid, $categoryid, $windowdays);
 $summarytiles = [
     [
         'label' => get_string('tile_activelearners', 'local_novalxp_execdashboard'),
@@ -236,9 +239,10 @@ echo html_writer::tag('style', '
 ');
 
 $windowoptions = [
-    7 => get_string('window_7', 'local_novalxp_execdashboard'),
-    30 => get_string('window_30', 'local_novalxp_execdashboard'),
-    90 => get_string('window_90', 'local_novalxp_execdashboard'),
+    7   => get_string('window_7', 'local_novalxp_execdashboard'),
+    30  => get_string('window_30', 'local_novalxp_execdashboard'),
+    90  => get_string('window_90', 'local_novalxp_execdashboard'),
+    365 => get_string('window_365', 'local_novalxp_execdashboard'),
 ];
 
 $filtercontrols = html_writer::label(
@@ -269,7 +273,25 @@ $filtercontrols .= html_writer::empty_tag('input', [
 ]);
 $filterform = html_writer::tag('form', $filtercontrols, ['method' => 'get', 'action' => $baseurl->out(false), 'class' => 'form-inline mb-4']);
 
+$alltimetiles = [
+    [
+        'label' => get_string('tile_totalusers', 'local_novalxp_execdashboard'),
+        'value' => format_float($alltime['totalusers'], 0, false),
+    ],
+    [
+        'label' => get_string('tile_everenrolled', 'local_novalxp_execdashboard'),
+        'value' => format_float($alltime['everenrolled'], 0, false),
+    ],
+    [
+        'label' => get_string('tile_totalcompletions', 'local_novalxp_execdashboard'),
+        'value' => format_float($alltime['totalcompletions'], 0, false),
+    ],
+];
+
 echo html_writer::start_div('container-fluid px-0');
+echo $OUTPUT->heading(get_string('section_alltimekpis', 'local_novalxp_execdashboard'), 3);
+echo local_novalxp_execdashboard_render_tiles($alltimetiles);
+echo html_writer::tag('hr', '', ['class' => 'my-4']);
 echo $filterform;
 echo $OUTPUT->heading(get_string('section_summarykpis', 'local_novalxp_execdashboard'), 3);
 echo local_novalxp_execdashboard_render_tiles($summarytiles);
@@ -295,6 +317,72 @@ if ($trends) {
 } else {
     echo $OUTPUT->notification(get_string('empty_trends', 'local_novalxp_execdashboard'), 'info');
 }
+
+echo $OUTPUT->heading(get_string('section_topenrolmentschart', 'local_novalxp_execdashboard'), 3);
+$topenrolcourses = array_slice($courses, 0, 10);
+if ($topenrolcourses) {
+    $topenrolchart = new chart_bar();
+    $topenrolchart->set_horizontal(true);
+    $topenrolchart->set_labels(array_column($topenrolcourses, 'coursename'));
+    $topenrolchart->add_series(
+        new chart_series(
+            get_string('chart_enrolments_series', 'local_novalxp_execdashboard'),
+            array_map(fn($c) => (int)$c['activeenrolments'], $topenrolcourses)
+        )
+    );
+    $topenrolchart->set_title(get_string('section_topenrolmentschart', 'local_novalxp_execdashboard'));
+    echo $OUTPUT->render($topenrolchart);
+} else {
+    echo $OUTPUT->notification(get_string('empty_topenrolmentschart', 'local_novalxp_execdashboard'), 'info');
+}
+
+echo $OUTPUT->heading(get_string('section_completionratechart', 'local_novalxp_execdashboard'), 3);
+if ($courses) {
+    $chartcourses = $windowdays > 0
+        ? array_values(array_filter($courses, fn($c) => $c['newenrolmentswindow'] > 0 || $c['completionswindow'] > 0))
+        : $courses;
+    usort($chartcourses, function ($a, $b) {
+        return $b['completionrate'] <=> $a['completionrate'];
+    });
+    if ($chartcourses) {
+        $completionratechart = new chart_bar();
+        $completionratechart->set_horizontal(true);
+        $completionratechart->set_labels(array_column($chartcourses, 'coursename'));
+        $completionratechart->add_series(
+            new chart_series(
+                get_string('chart_completionrate_series', 'local_novalxp_execdashboard'),
+                array_map(fn($c) => (float)$c['completionrate'], $chartcourses)
+            )
+        );
+        $completionratechart->set_title(get_string('section_completionratechart', 'local_novalxp_execdashboard'));
+        echo $OUTPUT->render($completionratechart);
+    } else {
+        echo $OUTPUT->notification(get_string('empty_completionratechart', 'local_novalxp_execdashboard'), 'info');
+    }
+} else {
+    echo $OUTPUT->notification(get_string('empty_completionratechart', 'local_novalxp_execdashboard'), 'info');
+}
+
+echo $OUTPUT->heading(get_string('section_engagementfunnel', 'local_novalxp_execdashboard'), 3);
+$funnelchart = new chart_bar();
+$funnelchart->set_horizontal(true);
+$funnelchart->set_labels([
+    get_string('funnel_newenrolmentusers', 'local_novalxp_execdashboard'),
+    get_string('funnel_startedlearners', 'local_novalxp_execdashboard'),
+    get_string('funnel_completedusers', 'local_novalxp_execdashboard'),
+]);
+$funnelchart->add_series(
+    new chart_series(
+        get_string('funnel_series_label', 'local_novalxp_execdashboard'),
+        [
+            $funnel['newenrolmentusers'],
+            $funnel['startedlearners'],
+            $funnel['completedusers'],
+        ]
+    )
+);
+$funnelchart->set_title(get_string('section_engagementfunnel', 'local_novalxp_execdashboard'));
+echo $OUTPUT->render($funnelchart);
 
 echo $OUTPUT->heading(get_string('section_courses', 'local_novalxp_execdashboard'), 3);
 if ($courses) {

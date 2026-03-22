@@ -111,7 +111,7 @@ class metrics {
         global $DB, $SITE;
 
         $now = time();
-        $windowstart = $now - ($windowdays * DAYSECS);
+        $windowstart = $windowdays > 0 ? $now - ($windowdays * DAYSECS) : 0;
         $params = [
             'siteid' => (int)$SITE->id,
             'ueactive' => 0,
@@ -329,7 +329,7 @@ class metrics {
         global $DB, $SITE;
 
         $now = time();
-        $windowstart = $now - ($windowdays * DAYSECS);
+        $windowstart = $windowdays > 0 ? $now - ($windowdays * DAYSECS) : 0;
         $params = [
             'siteid' => (int)$SITE->id,
             'ueactive' => 0,
@@ -405,6 +405,105 @@ class metrics {
     }
 
     /**
+     * Return all-time system-wide KPIs that are not affected by dashboard filters.
+     *
+     * @return array{totalusers:int,everenrolled:int,totalcompletions:int}
+     */
+    public static function alltime_summary(): array {
+        global $DB, $SITE;
+
+        $guestid = (int)($DB->get_field('user', 'id', ['username' => 'guest']) ?: 0);
+        $totalusers = (int)$DB->count_records_select('user', 'deleted = 0 AND id <> :guestid', ['guestid' => $guestid]);
+        $everenrolled = (int)$DB->get_field_sql(
+            "SELECT COUNT(DISTINCT userid) FROM (
+                 SELECT ue.userid FROM {user_enrolments} ue JOIN {enrol} e ON ue.enrolid = e.id WHERE e.courseid <> :siteid1
+                 UNION
+                 SELECT cc.userid FROM {course_completions} cc WHERE cc.course <> :siteid2
+             ) combined",
+            ['siteid1' => (int)$SITE->id, 'siteid2' => (int)$SITE->id]
+        );
+        $totalcompletions = (int)$DB->count_records_select(
+            'course_completions',
+            'timecompleted IS NOT NULL AND course <> :siteid',
+            ['siteid' => (int)$SITE->id]
+        );
+
+        return [
+            'totalusers'       => $totalusers,
+            'everenrolled'     => $everenrolled,
+            'totalcompletions' => $totalcompletions,
+        ];
+    }
+
+    /**
+     * Return engagement funnel counts for learners in the selected window:
+     * new enrolments in period, learners who started at least one activity,
+     * and distinct completers.
+     *
+     * @param int $cohortid Optional cohort scope.
+     * @param int $categoryid Optional course category scope.
+     * @param int $windowdays Rolling window for period metrics.
+     * @return array{newenrolmentusers:int,startedlearners:int,completedusers:int}
+     */
+    public static function funnel_series(int $cohortid = 0, int $categoryid = 0, int $windowdays = 0): array {
+        global $DB, $SITE;
+
+        $now = time();
+        $windowstart = $windowdays > 0 ? $now - ($windowdays * DAYSECS) : 0;
+
+        $params = [
+            'siteid'              => (int)$SITE->id,
+            'ueactive'            => 0,
+            'eactive'             => 0,
+            'nowstart'            => $now,
+            'nowend'              => $now,
+            'windowstartnewenrol' => $windowstart,
+        ];
+        $filters = self::filter_sql($cohortid, $categoryid, $params);
+        $joins = $filters['joins'];
+        $where = $filters['where'];
+
+        if ($windowdays > 0) {
+            $params['windowstartstarted']   = $windowstart;
+            $params['windowstartcompleted'] = $windowstart;
+            $startedwhere   = 'AND cmc.timemodified >= :windowstartstarted';
+            $completedwhere = 'AND cc.timecompleted >= :windowstartcompleted';
+        } else {
+            $startedwhere   = '';
+            $completedwhere = '';
+        }
+
+        $sql = "SELECT COUNT(DISTINCT CASE WHEN COALESCE(ue.timecreated, ue.timestart, 0) >= :windowstartnewenrol THEN ue.userid ELSE NULL END) AS newenrolmentusers,
+                       COUNT(DISTINCT CASE WHEN started.userid IS NOT NULL THEN ue.userid ELSE NULL END) AS startedlearners,
+                       COUNT(DISTINCT CASE WHEN cc.timecompleted IS NOT NULL {$completedwhere} THEN ue.userid ELSE NULL END) AS completedusers
+                  FROM {enrol} e
+                  JOIN {user_enrolments} ue ON ue.enrolid = e.id
+                  JOIN {course} c ON c.id = e.courseid
+                  {$joins}
+             LEFT JOIN {course_completions} cc
+                    ON cc.course = e.courseid AND cc.userid = ue.userid
+             LEFT JOIN (
+                    SELECT DISTINCT cmc.userid
+                      FROM {course_modules_completion} cmc
+                     WHERE cmc.completionstate <> 0 {$startedwhere}
+                  ) started ON started.userid = ue.userid
+                 WHERE ue.status = :ueactive
+                   AND e.status = :eactive
+                   AND e.courseid <> :siteid
+                   AND (ue.timestart = 0 OR ue.timestart <= :nowstart)
+                   AND (ue.timeend = 0 OR ue.timeend > :nowend)
+                   {$where}";
+
+        $record = $DB->get_record_sql($sql, $params);
+
+        return [
+            'newenrolmentusers' => (int)($record->newenrolmentusers ?? 0),
+            'startedlearners'   => (int)($record->startedlearners ?? 0),
+            'completedusers'    => (int)($record->completedusers ?? 0),
+        ];
+    }
+
+    /**
      * Return bucketed enrolment and completion trend rows for the reporting window.
      *
      * @param int $windowdays Rolling window for period metrics.
@@ -416,7 +515,18 @@ class metrics {
         global $DB, $SITE;
 
         $now = time();
-        $windowstart = $now - ($windowdays * DAYSECS);
+        if ($windowdays === 0) {
+            $mindate = $DB->get_field_sql(
+                "SELECT MIN(COALESCE(ue.timecreated, ue.timestart, 0))
+                   FROM {user_enrolments} ue
+                   JOIN {enrol} e ON ue.enrolid = e.id
+                  WHERE e.courseid <> :siteid AND ue.status = 0 AND e.status = 0",
+                ['siteid' => (int)$SITE->id]
+            );
+            $windowstart = $mindate ? (int)$mindate : ($now - 365 * DAYSECS);
+        } else {
+            $windowstart = $now - ($windowdays * DAYSECS);
+        }
         $params = [
             'siteid' => (int)$SITE->id,
             'ueactive' => 0,
@@ -453,7 +563,7 @@ class metrics {
                    {$where}";
 
         $records = $DB->get_records_sql($sql, $params);
-        $bucketdays = $windowdays > 30 ? 7 : 1;
+        $bucketdays = $windowdays === 0 ? 30 : ($windowdays > 30 ? 7 : 1);
         $series = [];
 
         for ($start = $windowstart; $start <= $now; $start += ($bucketdays * DAYSECS)) {
