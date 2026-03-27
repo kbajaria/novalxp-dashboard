@@ -2,7 +2,7 @@ import puppeteer from 'puppeteer';
 
 const BASE = process.argv[2] || 'https://dev.novalxp.co.uk';
 const USER = 'demo.user001';
-const PASS = 'Finova!2025.';
+const PASS = 'Finova!2025';
 
 (async () => {
   const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
