@@ -244,6 +244,7 @@ $windowoptions = [
     90  => get_string('window_90', 'local_novalxp_execdashboard'),
     365 => get_string('window_365', 'local_novalxp_execdashboard'),
 ];
+$windowlabel = $windowoptions[$windowdays];
 
 $filtercontrols = html_writer::label(
     get_string('filter_category', 'local_novalxp_execdashboard'),
@@ -311,7 +312,7 @@ if ($trends) {
     $chart->set_labels($trendlabels);
     $chart->add_series(new chart_series(get_string('trend_newenrolments', 'local_novalxp_execdashboard'), $newenrolments));
     $chart->add_series(new chart_series(get_string('trend_completions', 'local_novalxp_execdashboard'), $completions));
-    $chart->set_title(get_string('section_trends', 'local_novalxp_execdashboard'));
+    $chart->set_title(get_string('section_trends', 'local_novalxp_execdashboard') . ' — ' . $windowlabel);
 
     echo $OUTPUT->render($chart);
 } else {
@@ -330,7 +331,7 @@ if ($topenrolcourses) {
             array_map(fn($c) => (int)$c['activeenrolments'], $topenrolcourses)
         )
     );
-    $topenrolchart->set_title(get_string('section_topenrolmentschart', 'local_novalxp_execdashboard'));
+    $topenrolchart->set_title(get_string('section_topenrolmentschart', 'local_novalxp_execdashboard') . ' — ' . $windowlabel);
     echo $OUTPUT->render($topenrolchart);
 } else {
     echo $OUTPUT->notification(get_string('empty_topenrolmentschart', 'local_novalxp_execdashboard'), 'info');
@@ -355,7 +356,7 @@ if ($courses) {
                 array_map(fn($c) => (float)$c['completionrate'], $chartcourses)
             )
         );
-        $completionratechart->set_title(get_string('section_completionratechart', 'local_novalxp_execdashboard'));
+        $completionratechart->set_title(get_string('section_completionratechart', 'local_novalxp_execdashboard') . ' — ' . $windowlabel);
         echo $OUTPUT->render($completionratechart);
     } else {
         echo $OUTPUT->notification(get_string('empty_completionratechart', 'local_novalxp_execdashboard'), 'info');
@@ -382,7 +383,7 @@ $funnelchart->add_series(
         ]
     )
 );
-$funnelchart->set_title(get_string('section_engagementfunnel', 'local_novalxp_execdashboard'));
+$funnelchart->set_title(get_string('section_engagementfunnel', 'local_novalxp_execdashboard') . ' — ' . $windowlabel);
 $funnelchart->get_xaxis(0, true)->set_stepsize(1);
 echo $OUTPUT->render($funnelchart);
 
