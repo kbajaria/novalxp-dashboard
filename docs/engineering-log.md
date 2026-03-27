@@ -9,6 +9,29 @@ Used to generate the weekly engineering report. Each entry should be added at th
 
 ---
 
+## 2026-03-27 — [Feature] Display selected time range in each KPI dashboard chart title
+
+**Component:** `artifacts/source/novalxp_execdashboard/index.php`
+**Status:** released (all environments)
+**Commit:** `abe11ea`
+
+### What shipped
+Each chart on the KPI dashboard now shows the currently selected time range as part of its title. For example, with "Last 30 days" selected, chart titles read "Trend series — Last 30 days", "Top 10 courses by enrolment — Last 30 days", etc.
+
+### Why
+The time range selector scrolls out of view when reviewing charts lower on the page, leaving the figures ambiguous. Chart titles now preserve this context regardless of scroll position.
+
+### Implementation
+One line added after the `$windowoptions` array to derive `$windowlabel = $windowoptions[$windowdays]`. Four `set_title()` calls updated to append ` — $windowlabel`. Purely additive — no logic, data, layout, or selector behaviour changed.
+
+### Test results
+Automated Puppeteer test run as `demo.user001` against all three environments. 6/6 checks passed on dev, test, and prod:
+- All 4 window options (7d, 30d, 90d, 365d) produce correct labels
+- Switching windows updates all 4 chart titles
+- No stale labels after switching
+
+---
+
 ## 2026-03-22 — [Feature] Popular courses block and bot catalog data
 
 **Component:** `block_novalxppopular`, `local_novalxpbot` payload builder
